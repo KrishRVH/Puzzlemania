@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
+  m_AnchoredPosition: {x: 0, y: -134}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440251368
@@ -441,7 +441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 159}
   m_SizeDelta: {x: 600, y: 41.1157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513530063
@@ -594,7 +594,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 261
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -618,7 +618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 551.5, y: 261, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -663,8 +663,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275.75, y: -130.5}
-  m_SizeDelta: {x: 551.5, y: 261}
+  m_AnchoredPosition: {x: -220.50003, y: -98.3}
+  m_SizeDelta: {x: 441, y: 196.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713729256
 MonoBehaviour:
@@ -946,8 +946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275.75, y: 130.5}
-  m_SizeDelta: {x: 551.5, y: 261}
+  m_AnchoredPosition: {x: -220.50003, y: 98.3}
+  m_SizeDelta: {x: 441, y: 196.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1116294411
 MonoBehaviour:
@@ -1259,8 +1259,8 @@ Canvas:
   m_GameObject: {fileID: 1191973162}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1538,8 +1538,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275.75, y: -130.5}
-  m_SizeDelta: {x: 551.5, y: 261}
+  m_AnchoredPosition: {x: 220.50003, y: -98.3}
+  m_SizeDelta: {x: 441, y: 196.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1465325342
 MonoBehaviour:
@@ -1686,8 +1686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275.75, y: 130.5}
-  m_SizeDelta: {x: 551.5, y: 261}
+  m_AnchoredPosition: {x: 220.50003, y: 98.3}
+  m_SizeDelta: {x: 441, y: 196.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877886295
 MonoBehaviour:
