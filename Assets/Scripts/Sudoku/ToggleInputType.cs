@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToggleObject : MonoBehaviour
+public class ToggleInputType : MonoBehaviour
 {
 
     public Color defaultColor;
@@ -27,8 +27,11 @@ public class ToggleObject : MonoBehaviour
 
     void Start()
     {
-        image = GetComponent<Image>();
         toggle = GetComponent<Toggle>();
+        toggle.onValueChanged.AddListener(delegate {
+            Toggle();
+        });
+        image = GetComponent<Image>();
         toggled = toggle.isOn;
         if (toggled)
         {

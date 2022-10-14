@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
+//[AddComponentMenu("UI/TextMeshPro - Input Field", 11)]
 
-public class Cell : MonoBehaviour
+public class Cell : MonoBehaviour, ISelectHandler
 {
 
     private string parentName;
+    private string inputType;
+    private string toggleValue;
+    private TMP_InputField inputField;
 
     public int house;
     public int index;
@@ -20,6 +27,8 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        inputField = GetComponent<TMP_InputField>();
         parentName = transform.parent.name;
         index = int.Parse(transform.name);
         house = int.Parse(parentName.Substring(parentName.Length - 1));
@@ -101,5 +110,34 @@ public class Cell : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void UpdateCell(string input)
+    {
+        inputField.text = input;
+    }
+
+	public void OnSelect (BaseEventData eventData) 
+	{
+        inputType = transform.parent.parent.parent.GetComponent<GameArea>().inputType;
+        toggleValue = transform.parent.parent.parent.GetComponent<GameArea>().toggleValue;
+
+        if (inputType == "numbers")
+        {
+            // Number
+            if (toggleValue == "C")
+            {
+                UpdateCell("");
+            }
+            else
+            {
+                UpdateCell(toggleValue);
+            }
+        }
+        else
+        {
+            // Notes
+        }
+
     }
 }

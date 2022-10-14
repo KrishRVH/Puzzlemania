@@ -2182,7 +2182,8 @@ GameObject:
   - component: {fileID: 68846380}
   - component: {fileID: 68846379}
   - component: {fileID: 68846381}
-  - component: {fileID: 68846382}
+  - component: {fileID: 68846383}
+  - component: {fileID: 68846384}
   m_Layer: 5
   m_Name: C
   m_TagString: Untagged
@@ -2295,21 +2296,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 68846382}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &68846382
+--- !u!114 &68846383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2318,7 +2307,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 68846376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &68846384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68846376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -8567,7 +8568,8 @@ GameObject:
   - component: {fileID: 406271276}
   - component: {fileID: 406271275}
   - component: {fileID: 406271277}
-  - component: {fileID: 406271278}
+  - component: {fileID: 406271279}
+  - component: {fileID: 406271280}
   m_Layer: 5
   m_Name: 9
   m_TagString: Untagged
@@ -8680,21 +8682,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 406271278}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &406271278
+--- !u!114 &406271279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8703,7 +8693,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 406271272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &406271280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406271272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -20750,6 +20752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 923852424}
+  - component: {fileID: 923852425}
   m_Layer: 5
   m_Name: GameArea
   m_TagString: Untagged
@@ -20781,6 +20784,20 @@ RectTransform:
   m_AnchoredPosition: {x: 136, y: 0}
   m_SizeDelta: {x: 944.5, y: 756}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &923852425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923852423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53044f93dfd8c045973bda1b635a2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleValue: 
+  inputType: 
 --- !u!1 &926255985
 GameObject:
   m_ObjectHideFlags: 0
@@ -21935,7 +21952,8 @@ GameObject:
   - component: {fileID: 984802878}
   - component: {fileID: 984802877}
   - component: {fileID: 984802879}
-  - component: {fileID: 984802880}
+  - component: {fileID: 984802881}
+  - component: {fileID: 984802882}
   m_Layer: 5
   m_Name: 8
   m_TagString: Untagged
@@ -22048,21 +22066,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 984802880}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &984802880
+--- !u!114 &984802881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22071,7 +22077,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 984802874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &984802882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984802874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -22088,7 +22106,8 @@ GameObject:
   - component: {fileID: 986922878}
   - component: {fileID: 986922877}
   - component: {fileID: 986922879}
-  - component: {fileID: 986922880}
+  - component: {fileID: 986922881}
+  - component: {fileID: 986922882}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -22201,21 +22220,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 986922880}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &986922880
+--- !u!114 &986922881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22224,7 +22231,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 986922874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &986922882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986922874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -24087,7 +24106,8 @@ GameObject:
   - component: {fileID: 1049984717}
   - component: {fileID: 1049984716}
   - component: {fileID: 1049984718}
-  - component: {fileID: 1049984719}
+  - component: {fileID: 1049984720}
+  - component: {fileID: 1049984721}
   m_Layer: 5
   m_Name: 5
   m_TagString: Untagged
@@ -24200,21 +24220,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1049984719}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &1049984719
+--- !u!114 &1049984720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24223,7 +24231,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1049984713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1049984721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049984713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -24241,6 +24261,7 @@ GameObject:
   - component: {fileID: 1051453453}
   - component: {fileID: 1051453455}
   - component: {fileID: 1051453456}
+  - component: {fileID: 1051453457}
   m_Layer: 5
   m_Name: NotesButton
   m_TagString: Untagged
@@ -24381,6 +24402,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   toggleColor: {r: 0, g: 0.5019608, b: 0, a: 1}
+--- !u!114 &1051453457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051453449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b0553dcdcfe574fbc226d081846d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052157353
 GameObject:
   m_ObjectHideFlags: 0
@@ -35671,7 +35704,8 @@ GameObject:
   - component: {fileID: 1519471373}
   - component: {fileID: 1519471372}
   - component: {fileID: 1519471374}
-  - component: {fileID: 1519471375}
+  - component: {fileID: 1519471376}
+  - component: {fileID: 1519471377}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -35784,21 +35818,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1519471375}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &1519471375
+--- !u!114 &1519471376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35807,7 +35829,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1519471369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1519471377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519471369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -36116,6 +36150,7 @@ GameObject:
   - component: {fileID: 1538415615}
   - component: {fileID: 1538415617}
   - component: {fileID: 1538415618}
+  - component: {fileID: 1538415619}
   m_Layer: 5
   m_Name: NumbersButton
   m_TagString: Untagged
@@ -36256,6 +36291,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   toggleColor: {r: 0, g: 0.5019608, b: 0, a: 1}
+--- !u!114 &1538415619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538415611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b0553dcdcfe574fbc226d081846d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539595535
 GameObject:
   m_ObjectHideFlags: 0
@@ -36844,7 +36891,8 @@ GameObject:
   - component: {fileID: 1580961351}
   - component: {fileID: 1580961350}
   - component: {fileID: 1580961352}
-  - component: {fileID: 1580961353}
+  - component: {fileID: 1580961354}
+  - component: {fileID: 1580961355}
   m_Layer: 5
   m_Name: 7
   m_TagString: Untagged
@@ -36957,21 +37005,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1580961353}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &1580961353
+--- !u!114 &1580961354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36980,7 +37016,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1580961347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1580961355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580961347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -37752,7 +37800,8 @@ GameObject:
   - component: {fileID: 1624335229}
   - component: {fileID: 1624335228}
   - component: {fileID: 1624335230}
-  - component: {fileID: 1624335231}
+  - component: {fileID: 1624335232}
+  - component: {fileID: 1624335233}
   m_Layer: 5
   m_Name: 6
   m_TagString: Untagged
@@ -37865,21 +37914,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1624335231}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &1624335231
+--- !u!114 &1624335232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37888,7 +37925,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624335225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1624335233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624335225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -39768,7 +39817,8 @@ GameObject:
   - component: {fileID: 1711671100}
   - component: {fileID: 1711671099}
   - component: {fileID: 1711671101}
-  - component: {fileID: 1711671102}
+  - component: {fileID: 1711671103}
+  - component: {fileID: 1711671104}
   m_Layer: 5
   m_Name: 4
   m_TagString: Untagged
@@ -39881,21 +39931,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1711671102}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &1711671102
+--- !u!114 &1711671103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39904,7 +39942,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711671096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1711671104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711671096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -47752,7 +47802,8 @@ GameObject:
   - component: {fileID: 2101360005}
   - component: {fileID: 2101360004}
   - component: {fileID: 2101360006}
-  - component: {fileID: 2101360007}
+  - component: {fileID: 2101360008}
+  - component: {fileID: 2101360009}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -47865,21 +47916,9 @@ MonoBehaviour:
   m_Group: {fileID: 887274428}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2101360007}
-        m_TargetAssemblyTypeName: ToggleObject, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
---- !u!114 &2101360007
+--- !u!114 &2101360008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47888,7 +47927,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2101360001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8684d0b91aeb7994dba1ae2a4afeb935, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aeaab17ed8cb4d4ba08841fbf99442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2101360009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101360001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1b59a6b1bc3149afbbbbe022df4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
