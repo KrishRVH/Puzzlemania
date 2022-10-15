@@ -27,6 +27,14 @@ public class Digits : MonoBehaviour
 
     public void UpdateGameArea()
     {
-        transform.parent.parent.GetComponent<GameArea>().UpdateToggle(value);
+        if (toggle.isOn)
+        {
+            transform.parent.parent.GetComponent<GameArea>().UpdateToggle(value);
+        }
+        else 
+        {
+            transform.parent.parent.GetComponent<GameArea>().UpdateToggle("");
+        }
+        
     }
 }
