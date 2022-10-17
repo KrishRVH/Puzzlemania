@@ -6112,6 +6112,7 @@ GameObject:
   - component: {fileID: 444565527}
   - component: {fileID: 444565526}
   - component: {fileID: 444565525}
+  - component: {fileID: 444565528}
   m_Layer: 5
   m_Name: HintButton
   m_TagString: Untagged
@@ -6222,6 +6223,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444565522}
   m_CullTransparentMesh: 1
+--- !u!114 &444565528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444565522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c483f308d5e9dbc47981f55e1f946e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &474966739
 GameObject:
   m_ObjectHideFlags: 0
