@@ -13,7 +13,6 @@ public class GameArea : MonoBehaviour
     public bool[,] rows;
     public bool[,] houses;
     private int output;
-    public bool newGrid;
 
     // Variables used for creating random sudoku puzzle
     private bool[,] randomColumns;
@@ -30,7 +29,6 @@ public class GameArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        newGrid = false;
         toggleValue = "";
         inputType = "numbers";
         columns = new bool[9,9];
@@ -57,10 +55,12 @@ public class GameArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (newGrid) {
-            newGrid = false;
-            GenerateFullGrid();
-        }
+
+    }
+
+    public void CreateGrid()
+    {
+        
     }
 
     public void GenerateFullGrid()

@@ -12,15 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/PuzzleChoice.unity
     guid: cc75bc8f741abd24e9001e5ddec83858
   - enabled: 1
-    path: Assets/Scenes/CrossSum/CrossSumMM.unity
-    guid: 0c2467174e170d6439ae0bb840429bea
-  - enabled: 1
-    path: Assets/Scenes/Wordle/WordleMM.unity
-    guid: d0c79a3f59eead94e96050d3021e6401
-  - enabled: 1
     path: Assets/Scenes/Sudoku/SudokuMM.unity
-    guid: 3639390cb4e09d74ca31995efc1fa83b
+    guid: 9f9e956bbc6db7a4d9eb7f08a4cf9dbc
+  - enabled: 1
+    path: Assets/Scenes/Sudoku/SudokuGame.unity
+    guid: ab1700bf62894ea48978aceb28c94d64
   - enabled: 1
     path: Assets/Scenes/Set/SetMM.unity
-    guid: 8873bab0677b02f4e8307750a89dc5e5
+    guid: aba77dfab0bdf56459538acaee4cd6e8
+  - enabled: 1
+    path: Assets/Scenes/CrossSum/CrossSumMM.unity
+    guid: 8877df94a1f40994e9764ed367397c04
+  - enabled: 1
+    path: Assets/Scenes/Wordle/WordleMM.unity
+    guid: acddd8c22358bd344bc321af114c789f
   m_configObjects: {}
