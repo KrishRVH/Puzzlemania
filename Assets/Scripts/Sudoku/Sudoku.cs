@@ -12,28 +12,11 @@ public class Sudoku : MonoBehaviour
     private Button hintButton;
     private bool reset = false;
     //private int resetCount = 0;
+    private bool once = true;
 
     void Start()
     {
-        hintButton = GetComponent<Button>();
-        //hintButton.onClick.AddListener(SudokuStart);
-        //grid = new int[9,9];
-        ResetGrid();
-        //Debug.Log ("0 Grid");
-        //PrintIntGrid(grid);
-        cList = new bool[9,9];
-        rList = new bool[9,9];
-        hList = new bool[9,9];
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                cList[i,j] = true;
-                rList[i,j] = true;
-                hList[i,j] = true;
-            }
-        }
-        //FillGrid();
+
     }
 
     void ResetGrid()
@@ -49,26 +32,29 @@ public class Sudoku : MonoBehaviour
 
     public void SudokuStart()
     {
-
-        hintButton = GetComponent<Button>();
-        //hintButton.onClick.AddListener(SudokuStart);
-        //grid = new int[9,9];
-        ResetGrid();
-        //Debug.Log ("0 Grid");
-        //PrintIntGrid(grid);
-        cList = new bool[9,9];
-        rList = new bool[9,9];
-        hList = new bool[9,9];
-        for (int i = 0; i < 9; i++)
+        if (once)
         {
-            for (int j = 0; j < 9; j++)
+            once = false;
+            //hintButton = GetComponent<Button>();
+            //hintButton.onClick.AddListener(SudokuStart);
+            //grid = new int[9,9];
+            ResetGrid();
+            //Debug.Log ("0 Grid");
+            //PrintIntGrid(grid);
+            cList = new bool[9,9];
+            rList = new bool[9,9];
+            hList = new bool[9,9];
+            for (int i = 0; i < 9; i++)
             {
-                cList[i,j] = true;
-                rList[i,j] = true;
-                hList[i,j] = true;
+                for (int j = 0; j < 9; j++)
+                {
+                    cList[i,j] = true;
+                    rList[i,j] = true;
+                    hList[i,j] = true;
+                }
             }
         }
-        
+
         FillGrid();
         //Debug.Log("---------Pre-Solve-------------");
         //PrintIntGrid(grid);
@@ -76,6 +62,21 @@ public class Sudoku : MonoBehaviour
         {
             Debug.Log("True");
             PrintIntGrid(grid);
+            reset = false;
+        }
+        else
+        {
+            ResetGrid();
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    cList[i,j] = true;
+                    rList[i,j] = true;
+                    hList[i,j] = true;
+                }
+            }
+            SudokuStart();
         }
         
         if (reset) {
@@ -83,7 +84,7 @@ public class Sudoku : MonoBehaviour
             reset = false;
             //if (resetCount < 200)
             //{
-                SudokuStart();
+            SudokuStart();
             //}
             //else
             //{
@@ -93,7 +94,7 @@ public class Sudoku : MonoBehaviour
                 //SolveGrid();
             //}
         }
-        
+        return;
     }
 
     bool CheckRowForValue(int row, int value)

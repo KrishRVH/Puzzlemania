@@ -23,6 +23,22 @@ public class CellClick : MonoBehaviour
 
     private bool add;
 
+    private bool once = true;
+
+    //public bool notYet = true;
+
+    /*
+    void Start()
+    {
+        GameArea = transform.parent.parent.parent;
+        while (notYet)
+        {
+            notYet = !GameArea.GetComponent<GameArea>().cellStart;
+        }
+        CellStart();
+    }
+    */
+
     void Start()
     {
         button = GetComponent<Button>();
@@ -39,12 +55,25 @@ public class CellClick : MonoBehaviour
         notes = new int[9];
         column = GameArea.GetComponent<GameArea>().CalculateColumn(house, index);
         row = GameArea.GetComponent<GameArea>().CalculateRow(house, index);
+        //Debug.Log(GameArea.GetComponent<Sudoku>().grid[(row - 1),(column - 1)]);
+        if (GameArea.GetComponent<Sudoku>().grid[(row - 1),(column - 1)] != 0)
+        {
+            string temp = (GameArea.GetComponent<Sudoku>().grid[(row - 1),(column - 1)]).ToString();
+            UpdateCell2(temp, true);
+        }
+    }
 
-        //if (GameArea.GetComponent<GameArea>().sudokuGrid[row,column] != 0)
-        //{
-            //string temp = (GameArea.GetComponent<GameArea>().sudokuGrid[row,column]).ToString();
-            //UpdateCell(temp, true);
-        //}
+    void Update()
+    {
+        if (GameArea.GetComponent<Sudoku>().grid[(row - 1),(column - 1)] != 0)
+        {
+            if (once)
+            {
+                once = false;
+                string temp = (GameArea.GetComponent<Sudoku>().grid[(row - 1),(column - 1)]).ToString();
+                UpdateCell2(temp, true);
+            }
+        }
     }
 
     public void OnCellClick()
@@ -120,6 +149,14 @@ public class CellClick : MonoBehaviour
             //Debug.Log("Invalid Column");
         }
 
+        add = false;
+    }
+
+    void UpdateCell2(string input, bool add)
+    {
+        buttonText.text = input;
+        currentValue = input;
+        GameArea.GetComponent<GameArea>().UpdateCellValue(column, row, house, int.Parse(currentValue), add);
         add = false;
     }
     
