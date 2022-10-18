@@ -25,10 +25,14 @@ public class GameArea : MonoBehaviour
     private int randomIndex;
     private int randomValue;
     private bool gridFilled;
+    public int[,] sudokuGrid;
 
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Sudoku>().SudokuStart();
+        sudokuGrid = new int[9,9];
+        sudokuGrid = GetComponent<Sudoku>().grid;
         toggleValue = "";
         inputType = "numbers";
         columns = new bool[9,9];
@@ -56,11 +60,6 @@ public class GameArea : MonoBehaviour
     void Update()
     {
 
-    }
-
-    public void CreateGrid()
-    {
-        
     }
 
     public void GenerateFullGrid()

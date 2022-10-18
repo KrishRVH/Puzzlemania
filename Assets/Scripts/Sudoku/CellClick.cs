@@ -37,9 +37,14 @@ public class CellClick : MonoBehaviour
         index = int.Parse(transform.name);
         house = int.Parse(parentName.Substring(parentName.Length - 1));
         notes = new int[9];
-
         column = GameArea.GetComponent<GameArea>().CalculateColumn(house, index);
         row = GameArea.GetComponent<GameArea>().CalculateRow(house, index);
+
+        //if (GameArea.GetComponent<GameArea>().sudokuGrid[row,column] != 0)
+        //{
+            //string temp = (GameArea.GetComponent<GameArea>().sudokuGrid[row,column]).ToString();
+            //UpdateCell(temp, true);
+        //}
     }
 
     public void OnCellClick()

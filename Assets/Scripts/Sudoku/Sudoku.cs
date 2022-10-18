@@ -5,28 +5,22 @@ using UnityEngine.UI;
 
 public class Sudoku : MonoBehaviour
 {
-    private int[,] grid;
+    public int[,] grid = new int[9,9];
     private bool[,] cList;
     private bool[,] rList;
     private bool[,] hList;
     private Button hintButton;
     private bool reset = false;
-    private int resetCount = 0;
+    //private int resetCount = 0;
 
     void Start()
     {
         hintButton = GetComponent<Button>();
-        hintButton.onClick.AddListener(HintClick);
-        grid = new int[9,9];
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                grid[i,j] = 0;
-            }
-        }
+        //hintButton.onClick.AddListener(SudokuStart);
+        //grid = new int[9,9];
+        ResetGrid();
         //Debug.Log ("0 Grid");
-        //PrintGrid();
+        //PrintIntGrid(grid);
         cList = new bool[9,9];
         rList = new bool[9,9];
         hList = new bool[9,9];
@@ -42,22 +36,64 @@ public class Sudoku : MonoBehaviour
         //FillGrid();
     }
 
-    void HintClick()
+    void ResetGrid()
     {
-        FillGrid();
-        PrintGrid();
-        if (reset) {
-            resetCount++;
-            reset = false;
-            if (resetCount < 20)
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
             {
-                HintClick();
-            }
-            else
-            {
-                Debug.Log("Reset Limit Reached");
+                grid[i,j] = 0;
             }
         }
+    }
+
+    public void SudokuStart()
+    {
+
+        hintButton = GetComponent<Button>();
+        //hintButton.onClick.AddListener(SudokuStart);
+        //grid = new int[9,9];
+        ResetGrid();
+        //Debug.Log ("0 Grid");
+        //PrintIntGrid(grid);
+        cList = new bool[9,9];
+        rList = new bool[9,9];
+        hList = new bool[9,9];
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                cList[i,j] = true;
+                rList[i,j] = true;
+                hList[i,j] = true;
+            }
+        }
+        
+        FillGrid();
+        //Debug.Log("---------Pre-Solve-------------");
+        //PrintIntGrid(grid);
+        if (SolveGrid(0, 0))
+        {
+            Debug.Log("True");
+            PrintIntGrid(grid);
+        }
+        
+        if (reset) {
+            //resetCount++;
+            reset = false;
+            //if (resetCount < 200)
+            //{
+                SudokuStart();
+            //}
+            //else
+            //{
+                //Debug.Log("Reset Limit Reached");
+                //Debug.Log("Pre-Solve");
+                //PrintIntGrid(grid);
+                //SolveGrid();
+            //}
+        }
+        
     }
 
     bool CheckRowForValue(int row, int value)
@@ -105,6 +141,26 @@ public class Sudoku : MonoBehaviour
         return false;
     }
 
+    bool CheckAllForValue(int row, int column, int value)
+    {
+        if (CheckRowForValue(row, value))
+        {
+            return true;
+        }
+
+        if (CheckColumnForValue(column, value))
+        {
+            return true;
+        }
+
+        if (CheckHouseForValue(row, column, value))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     List<int> RowAvailable(int row)
     {
         List<int> output = new List<int>();
@@ -115,8 +171,8 @@ public class Sudoku : MonoBehaviour
                 output.Add(i + 1);
             }
         }
-        Debug.Log("RowAvailable | Row " + row);
-        PrintList(output);
+        //Debug.Log("RowAvailable | Row " + row);
+        //PrintList(output);
         return output;
     }
 
@@ -130,8 +186,8 @@ public class Sudoku : MonoBehaviour
                 output.Add(i + 1);
             }
         }
-        Debug.Log("ColumnAvailable | Column " + column);
-        PrintList(output);
+        //Debug.Log("ColumnAvailable | Column " + column);
+        //PrintList(output);
         return output;
     }
 
@@ -168,8 +224,8 @@ public class Sudoku : MonoBehaviour
                 output.Add(i + 1);
             }
         }
-        Debug.Log("HouseAvailable | House " + house);
-        PrintList(output);
+        //Debug.Log("HouseAvailable | House " + house);
+        //PrintList(output);
         return output;
     }
 
@@ -177,13 +233,13 @@ public class Sudoku : MonoBehaviour
     {
         List<int> cellList = new List<int>();
         List<int> tempList = new List<int>();
-        List<int> columnList = ColumnAvailable(column);
         List<int> rowList = RowAvailable(row);
-        List<int> houseList = HouseAvailable(column, row);
+        List<int> columnList = ColumnAvailable(column);
+        List<int> houseList = HouseAvailable(row, column);
 
-        foreach (int num in columnList)
+        foreach (int num in rowList)
         {
-            if (rowList.Contains(num))
+            if (columnList.Contains(num))
             {
                 tempList.Add(num);
             }
@@ -197,25 +253,29 @@ public class Sudoku : MonoBehaviour
             }
         }
 
-        Debug.Log("CellAvailable | Cell (" + row + "," + column + ")");
-        PrintList(cellList);
+        //Debug.Log("CellAvailable | Cell (" + row + "," + column + ")");
+        //PrintList(cellList);
 
         return cellList;
     }
 
-    void UpdateRList(int row, int value)
+    void UpdateRList(int row, int value, bool remove)
     {
-        rList[row,(value - 1)] = false;
+        rList[row,(value - 1)] = !remove;
+        //Debug.Log("Current rList");
+        //PrintBoolGrid(rList);
         return;
     }
 
-    void UpdateCList(int column, int value)
+    void UpdateCList(int column, int value, bool remove)
     {
-        cList[column,(value - 1)] = false;
+        cList[column,(value - 1)] = !remove;
+        //Debug.Log("Current cList");
+        //PrintBoolGrid(cList);
         return;
     }
 
-    void UpdateHList(int column, int row, int value)
+    void UpdateHList(int row, int column, int value, bool remove)
     {
         int house = 0;
         int rowHouse;
@@ -241,16 +301,18 @@ public class Sudoku : MonoBehaviour
             default: break;
         }
         
-        hList[house,(value - 1)] = false;
+        hList[house,(value - 1)] = !remove;
         //Debug.Log("hList | Remove | " + (value - 1))
+        //Debug.Log("Current hList");
+        //PrintBoolGrid(hList);
         return;
     }
 
-    void UpdateLists(int row, int column, int value)
+    void UpdateLists(int row, int column, int value, bool remove)
     {
-        UpdateRList(row, value);
-        UpdateCList(column, value);
-        UpdateHList(row, column, value);
+        UpdateRList(row, value, remove);
+        UpdateCList(column, value, remove);
+        UpdateHList(row, column, value, remove);
     }
 
     void FillGrid()
@@ -258,7 +320,7 @@ public class Sudoku : MonoBehaviour
         List<int> cellList = new List<int>();
         int rand;
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 9; j++)
             {
@@ -273,11 +335,11 @@ public class Sudoku : MonoBehaviour
                     }
                     
                     rand = (int)(Random.value * cellList.Count);
+                    //Debug.Log("Cell (" + i + "," + j + ") = " + cellList[rand]);
                     grid[i,j] = cellList[rand];
-                    Debug.Log("Cell (" + i + "," + j + ") = " + cellList[rand]);
-                    UpdateLists(i, j, cellList[rand]);
-                    Debug.Log("Current Grid");
-                    PrintGrid();
+                    UpdateLists(i, j, cellList[rand], true);
+                    //Debug.Log("Current Grid");
+                    //PrintIntGrid(grid);
                 }
             }
         }
@@ -288,20 +350,117 @@ public class Sudoku : MonoBehaviour
         reset = true;
         for (int i = 0; i < 9; i++)
         {
-            grid[row,i] = 0;
+            if (grid[row,i] != 0)
+            {
+                UpdateLists(row, i, grid[row,i], false);
+                grid[row,i] = 0;
+            }
         }
-        Debug.Log("Reset Row " + row + " | Current Grid");
-        PrintGrid();
+        //Debug.Log("Reset Row " + row + " | Current Grid");
+        //PrintIntGrid(grid);
     }
 
-    void PrintGrid()
+    bool SolveGrid(int row, int column)
+    {
+
+        if (IsSolved())
+        {
+            //Debug.Log("Solved Grid");
+            //PrintIntGrid(grid);
+            return true;
+        }
+
+        //Debug.Log("Current Grid");
+        //PrintIntGrid(grid);
+
+        if (grid[row,column] != 0)
+        {
+            if (column == 8) {
+                SolveGrid((row + 1), 0);
+            }
+            else
+            {
+                SolveGrid(row, (column + 1));
+            }
+        }
+
+        List<int> cellList = new List<int>();
+        cellList = CellAvailable(row, column);
+        for (int i = 0; i < cellList.Count; i++)
+        {
+            if (!CheckAllForValue(row, column, cellList[i]))
+            {
+                grid[row,column] = cellList[i];
+                UpdateLists(row, column, cellList[i], true);
+                if (column == 8) {
+                    if (SolveGrid((row + 1), 0))
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (SolveGrid(row, (column + 1)))
+                    {
+                        return true;
+                    }
+                }
+                UpdateLists(row, column, cellList[i], false);
+            }
+        }
+        if (IsSolved())
+        {
+            //Debug.Log("Solved Grid");
+            //PrintIntGrid(grid);
+            return true;
+        }
+        return false;
+
+    }
+
+    bool IsSolved()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (grid[i,j] == 0)
+                {
+                    //Debug.Log("IsSolved | False");
+                    return false;
+                }
+            }
+        }
+        //Debug.Log("IsSolved | True");
+        return true;
+    }
+
+    void PrintIntGrid(int[,] gridToPrint)
     {
         string output = "";
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
             {
-                output += grid[i,j];
+                output += gridToPrint[i,j];
+                if (j < 8)
+                {
+                    output += " ";
+                }
+            }
+            output += "\n";
+        }
+        Debug.Log(output);
+    }
+
+    void PrintBoolGrid(bool[,] gridToPrint)
+    {
+        string output = "";
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                output += gridToPrint[i,j];
                 if (j < 8)
                 {
                     output += " ";
