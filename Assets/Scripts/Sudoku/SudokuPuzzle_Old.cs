@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SudokuPuzzle : MonoBehaviour
+public class SudokuPuzzle_Old : MonoBehaviour
 {
 	private int[,] grid;
 	private int N; // number of columns/rows.

@@ -132,7 +132,7 @@ public class Sudoku : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                gridValue = grid[(((row / 3) * 3) + 1), (((column / 3) * 3) + 1)];
+                gridValue = grid[(((row / 3) * 3) + i), (((column / 3) * 3) + j)];
                 if (gridValue == value)
                 {
                     return true;
