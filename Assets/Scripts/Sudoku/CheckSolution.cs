@@ -7,7 +7,6 @@ public class CheckSolution : MonoBehaviour
 {
 
     private Transform GameArea;
-    private Component GameAreaScript;
     private bool[,] columns;
     private bool[,] rows;
     private bool[,] houses;

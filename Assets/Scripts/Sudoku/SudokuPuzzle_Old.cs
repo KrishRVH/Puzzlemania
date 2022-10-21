@@ -8,18 +8,18 @@ public class SudokuPuzzle_Old : MonoBehaviour
 	private int N; // number of columns/rows.
 	private int SRN; // square root of N
 	private int K; // No. Of missing digits
-    private SudokuPuzzle sudokuPuzzle;
+    private SudokuPuzzle_Old sudokuPuzzle;
 
     void Start()
     {
         int N = 9, K = 20;
-		sudokuPuzzle = new SudokuPuzzle(N, K);
+		sudokuPuzzle = new SudokuPuzzle_Old(N, K);
 		sudokuPuzzle.fillValues();
 		sudokuPuzzle.printSudoku();
     }
 
 	// Constructor
-	public SudokuPuzzle(int N, int K)
+	public SudokuPuzzle_Old(int N, int K)
 	{
 		this.N = N;
 		this.K = K;
@@ -122,7 +122,7 @@ public class SudokuPuzzle_Old : MonoBehaviour
 	bool fillRemaining(int i, int j)
 	{
 		// System.out.println(i+" "+j);
-		if ((j >= N) && (i < N- 1))
+		if ((j >= N) && (i < N - 1))
 		{
 			i = i + 1;
 			j = 0;
