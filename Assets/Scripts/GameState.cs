@@ -5,21 +5,10 @@ using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
-    public string gameName;
+    public string gameChoice;
 
-    public class HighScore : MonoBehaviour
+    void Start()
     {
-        public int sudoku;
-        public int set;
-        public int crossSum;
-        public int wordle;
-    }
-
-    public class BestTime : MonoBehaviour
-    {
-        public int sudoku;
-        public int set;
-        public int crossSum;
-        public int wordle;
+        gameChoice = "";
     }
 }

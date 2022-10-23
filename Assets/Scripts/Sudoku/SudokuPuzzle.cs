@@ -9,19 +9,16 @@ public class SudokuPuzzle : MonoBehaviour
     private int sudokuHouseSize;
     private int sudokuDifficulty;
     private int[,] sudokuGrid;
-    private SudokuPuzzle sudokuPuzzle;
+    private int[,] solvedGrid;
+    public SudokuPuzzle sudokuPuzzle;
 
-    void Start()
+    public void PlaySudoku()
     {
         sudokuGridSize = 9;
         sudokuHouseSize = 3;
         sudokuDifficulty = 40;
         sudokuPuzzle = new SudokuPuzzle(sudokuGridSize, sudokuDifficulty);
-        //Debug.Log("Before InitialGridFill");
         sudokuPuzzle.InitialGridFill();
-        sudokuPuzzle.PrintGrid();
-        //Debug.Log("After InitialGridFill");
-        //Debug.Log("Before SolveGrid");
         int count = 0;
         while (!sudokuPuzzle.SolveGrid())
         {
@@ -35,14 +32,9 @@ public class SudokuPuzzle : MonoBehaviour
             sudokuPuzzle.ResetGrid();
             sudokuPuzzle.InitialGridFill();
         }
-        sudokuPuzzle.PrintGrid();
-        //Debug.Log("After SolveGrid");
-        //Debug.Log("Before RemoveCells");
+        sudokuPuzzle.CopyGrid(sudokuPuzzle.sudokuGrid,sudokuPuzzle.solvedGrid);
         sudokuPuzzle.RemoveCells();
-        //Debug.Log("After RemoveCells");
-        //Debug.Log("Before PrintGrid");
-        sudokuPuzzle.PrintGrid();
-        //Debug.Log("After PrintGrid");
+        transform.GetComponent<SudokuLayout>().StartSudoku();
     }
 
 	public SudokuPuzzle(int sudokuGridSize, int sudokuDifficulty)
@@ -52,9 +44,60 @@ public class SudokuPuzzle : MonoBehaviour
 
         sudokuHouseSize = (int)(Mathf.Sqrt(sudokuGridSize));
 
+        solvedGrid = new int[sudokuGridSize,sudokuGridSize];
         sudokuGrid = new int[sudokuGridSize,sudokuGridSize];
         ResetGrid();
 	}
+
+    public void CheckSolution()
+    {
+        int[,] userGrid = new int[sudokuGridSize,sudokuGridSize];
+        Transform house;
+        List<int> houseList = new List<int>();
+        int columnCount = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            houseList.Clear();
+            houseList.Add(0 + (i * 3));
+            houseList.Add(1 + (i * 3));
+            houseList.Add(2 + (i * 3));
+            for (int j = 0; j < 3; j++)
+            {
+                columnCount = 0;
+                foreach (int item in houseList)
+                {
+                    house = transform.GetChild(item + 1);
+                    for (int k = 0; k < 3; k++)
+                    {
+                        //Debug.Log(i + " " + j + " " + item + " " + (k + (j * 3)));
+                        userGrid[(j + (i * 3)), columnCount] = int.Parse(house.GetChild((k + (j * 3))).GetComponent<SudokuCell>().GetCurrentValue());
+                        columnCount++;
+                    }
+                }
+            }
+        }
+
+        //PrintOtherGrid(sudokuPuzzle.solvedGrid);
+        //PrintOtherGrid(userGrid);
+
+        for (int i = 0; i < sudokuGridSize; i++)
+        {
+            for (int j = 0; j < sudokuGridSize; j++)
+            {
+                if (sudokuPuzzle.solvedGrid[i,j] != userGrid[i,j])
+                {
+                    Debug.Log("Incorrect");
+                    return;
+                }
+            }
+        }
+        Debug.Log("Winner");
+    }
+
+    public int GetCellValue(int row, int column)
+    {
+        return sudokuGrid[row,column];
+    }
 
     void ResetGrid()
     {
@@ -80,7 +123,7 @@ public class SudokuPuzzle : MonoBehaviour
             case 20: return 6;
             case 21: return 7;
             case 22: return 8;
-            default: return 100;
+            default: return 0;
         }
     }
 
@@ -96,10 +139,7 @@ public class SudokuPuzzle : MonoBehaviour
     {
         for (int i = 0; i < sudokuGridSize; i++)
         {
-            if (value == sudokuGrid[row,i])
-            {
-                return false;
-            }
+            if (value == sudokuGrid[row,i]) { return false; }
         }
         return true;
     }
@@ -108,10 +148,7 @@ public class SudokuPuzzle : MonoBehaviour
     {
         for (int i = 0; i < sudokuGridSize; i++)
         {
-            if (value == sudokuGrid[i,column])
-            {
-                return false;
-            }
+            if (value == sudokuGrid[i,column]) { return false; }
         }
         return true;
     }
@@ -201,10 +238,7 @@ public class SudokuPuzzle : MonoBehaviour
             for (int j = 0; j < sudokuHouseSize; j++)
             {
                 rand = numbers.Count + 1;
-                while (rand >= numbers.Count)
-                {
-                    rand = (int)(Random.value * numbers.Count);
-                }
+                while (rand >= numbers.Count) { rand = (int)(Random.value * numbers.Count); }
                 sudokuGrid[(((row / sudokuHouseSize) * sudokuHouseSize) + i), (((column / sudokuHouseSize) * sudokuHouseSize) + j)] = numbers[rand];
                 numbers.Remove(numbers[rand]);
             }
@@ -214,18 +248,11 @@ public class SudokuPuzzle : MonoBehaviour
     bool SolveGrid(int row = 0, int column = 0)
     {
 
-        if (column >= sudokuGridSize)
-        {
-            row++;
-            column = 0;
-        }
+        if (column >= sudokuGridSize) { row++; column = 0; }
 
         if (row >= sudokuGridSize) { return true; }
 
-        if (sudokuGrid[row,column] != 0)
-        {
-            return SolveGrid(row, (column + 1));
-        }
+        if (sudokuGrid[row,column] != 0) { return SolveGrid(row, (column + 1)); }
 
         List<int> cellList = CellAvailable(row, column);
         foreach (int num in cellList)
@@ -253,28 +280,15 @@ public class SudokuPuzzle : MonoBehaviour
             //PrintGrid();
             //ZeroCounter();
             count++;
-            if (count >= 150)
-            {
-                Debug.Log("Break 2");
-                break;
-            }
+            if (count >= 150) { Debug.Log("Break 2"); break; }
+
             randomRow = sudokuGridSize + 1;
             randomColumn = sudokuGridSize + 1;
-            while (randomRow >= sudokuGridSize)
-            {
-                randomRow = (int)(Random.value * sudokuGridSize);
-            }
+            while (randomRow >= sudokuGridSize) { randomRow = (int)(Random.value * sudokuGridSize); }
 
-            while (randomColumn >= sudokuGridSize)
-            {
-                randomColumn = (int)(Random.value * sudokuGridSize);
-            }
+            while (randomColumn >= sudokuGridSize) { randomColumn = (int)(Random.value * sudokuGridSize); }
             
-            if (sudokuGrid[randomRow,randomColumn] == 0)
-            {
-                //Debug.Log("Skip");
-                continue;
-            }
+            if (sudokuGrid[randomRow,randomColumn] == 0) { continue; }
 
             cellValue = sudokuGrid[randomRow,randomColumn];
             sudokuGrid[randomRow,randomColumn] = 0;
@@ -282,7 +296,6 @@ public class SudokuPuzzle : MonoBehaviour
             if (numbers.Count <= 1)
             {
                 sudokuGrid[randomRow,randomColumn] = 0;
-                //Debug.Log("Removed");
                 cellsRemoved++;
                 continue;
             }
@@ -306,15 +319,9 @@ public class SudokuPuzzle : MonoBehaviour
             if (unique)
             {
                 sudokuGrid[randomRow,randomColumn] = 0;
-                //Debug.Log("Removed");
                 cellsRemoved++;
             }
-            else
-            {
-                //Debug.Log("Not Unique");
-            }
         }
-        //ZeroCounter();
     }
 
     void PrintGrid()
@@ -332,14 +339,25 @@ public class SudokuPuzzle : MonoBehaviour
         Debug.Log(output);
     }
 
+    void PrintOtherGrid(int[,] gridToPrint)
+    {
+        string output = "";
+        for (int i = 0; i < sudokuGridSize; i++)
+        {
+            for (int j = 0; j < sudokuGridSize; j++)
+            {
+                output += gridToPrint[i,j];
+                output += " ";
+            }
+            output += "\n";
+        }
+        Debug.Log(output);
+    }
+
     void PrintList(List<int> list)
     {
         string output = "";
-        foreach (int num in list)
-        {
-            output += num;
-            output += " ";
-        }
+        foreach (int num in list) { output += num + " "; }
         Debug.Log(output);
     }
 
@@ -350,10 +368,7 @@ public class SudokuPuzzle : MonoBehaviour
         {
             for (int j = 0; j < sudokuGridSize; j++)
             {
-                if (sudokuGrid[i,j] == 0)
-                {
-                    output++;
-                }
+                if (sudokuGrid[i,j] == 0) { output++; }
             }
         }
         Debug.Log("Zeroes: " + output);

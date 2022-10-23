@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Control.unity
+    guid: 0b18acaeb60d59e45b315c9d08a1a9d3
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/PuzzleChoice.unity
     guid: cc75bc8f741abd24e9001e5ddec83858
+  - enabled: 1
+    path: Assets/Scenes/GameLayout.unity
+    guid: 32dbd8acb04444d4f8d3b5a309dc52b7
   - enabled: 1
     path: Assets/Scenes/Sudoku/SudokuMM.unity
     guid: 9f9e956bbc6db7a4d9eb7f08a4cf9dbc
