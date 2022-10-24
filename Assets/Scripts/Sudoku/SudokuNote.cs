@@ -11,9 +11,12 @@ public class SudokuNote : MonoBehaviour
     private string noteValue;
     private Transform gameArea;
     private Transform cell;
+    public int house;
+    public int index;
     private Transform notes;
     private Transform toggles;
     private Transform inputTypes;
+    private Transform leftPanel;
 
     void Start()
     {
@@ -21,13 +24,17 @@ public class SudokuNote : MonoBehaviour
         gameArea = transform.parent.parent.parent.parent;
         notes = transform.parent;
         cell = transform.parent.parent;
-        toggles = gameArea.GetChild(10);
-        inputTypes = gameArea.GetChild(11);
+        house = cell.GetComponent<SudokuCell>().house;
+        index = cell.GetComponent<SudokuCell>().index;
+        toggles = gameArea.GetChild(9);
+        inputTypes = gameArea.GetChild(10);
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnNoteClick);
+        //button.onClick.AddListener(OnNoteClick);
         buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
+        leftPanel = GameObject.Find("LeftPanel").transform;
     }
 
+    /*
     public void OnNoteClick()
     {
         string currentDigit = GetCurrentDigitToggle();
@@ -55,7 +62,9 @@ public class SudokuNote : MonoBehaviour
             cell.GetComponent<SudokuCell>().OnCellClick();
         }
     }
+    */
 
+    /*
     private string GetCurrentDigitToggle()
     {
         Transform temp;
@@ -69,6 +78,7 @@ public class SudokuNote : MonoBehaviour
         }
         return "";
     }
+    */
 
     public string GetCurrentValue()
     {
@@ -79,14 +89,23 @@ public class SudokuNote : MonoBehaviour
     {
         if (enable)
         {
-            buttonText.text = noteValue;
+            if (buttonText.text != noteValue)
+            {
+                TrackChange();
+                buttonText.text = noteValue;
+            }
         }
         else
         {
-            buttonText.text = "";
+            if (buttonText.text != "")
+            {
+                TrackChange();
+                buttonText.text = "";
+            }
         }
     }
 
+    /*
     public bool GetCurrentInputType()
     {
         Transform temp;
@@ -106,5 +125,17 @@ public class SudokuNote : MonoBehaviour
             }
         }
         return false;
+    }
+    */
+
+    private void TrackChange()
+    {
+        Transform undoButton = leftPanel.GetChild(0).GetComponent<Transform>();
+        undoButton.GetComponent<SudokuUndo>().AddNoteChange(house, index, (int.Parse(noteValue) - 1), buttonText.text);
+    }
+
+    public void UndoChange(string savedValue)
+    {
+        buttonText.text = savedValue;
     }
 }

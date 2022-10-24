@@ -6,6 +6,10 @@ TagManager:
   tags:
   - GameArea
   - Master
+  - LeftPanel
+  - RightPanel
+  - TopPanel
+  - BottomPanel
   layers:
   - Default
   - TransparentFX

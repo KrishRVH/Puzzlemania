@@ -66,7 +66,7 @@ public class SudokuPuzzle : MonoBehaviour
                 columnCount = 0;
                 foreach (int item in houseList)
                 {
-                    house = transform.GetChild(item + 1);
+                    house = transform.GetChild(item);
                     for (int k = 0; k < 3; k++)
                     {
                         //Debug.Log(i + " " + j + " " + item + " " + (k + (j * 3)));
@@ -92,6 +92,7 @@ public class SudokuPuzzle : MonoBehaviour
             }
         }
         Debug.Log("Winner");
+        GameObject.Find("WinPanel").SetActive(true);
     }
 
     public int GetCellValue(int row, int column)

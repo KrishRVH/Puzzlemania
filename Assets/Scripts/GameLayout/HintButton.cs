@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Quit : MonoBehaviour
+public class HintButton : MonoBehaviour
 {
 
     private Button button;
@@ -12,11 +12,11 @@ public class Quit : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(QuitClick);
+        button.onClick.AddListener(HintClick);
     }
 
-    void QuitClick()
+    void HintClick()
     {
-        Application.Quit();
+
     }
 }

@@ -8,8 +8,8 @@ public class SudokuCell : MonoBehaviour
 {
     private int row;
     private int column;
-    private int house;
-    private int index;
+    public int house;
+    public int index;
     private Button button;
     private TMP_Text buttonText;
     private bool canChange = false;
@@ -20,6 +20,7 @@ public class SudokuCell : MonoBehaviour
     private Image image;
     private Color canChangeFalse;
     private Color canChangeTrue;
+    private Transform leftPanel;
 
     void Start()
     {
@@ -30,13 +31,14 @@ public class SudokuCell : MonoBehaviour
         canChangeFalse = new Color(0.7f,0.7f,0.7f,1f);
         canChangeTrue = new Color(1f,1f,1f,1f);
         gameArea = transform.parent.parent;
-        toggles = gameArea.GetChild(10);
-        inputTypes = gameArea.GetChild(11);
+        toggles = gameArea.GetChild(9);
+        inputTypes = gameArea.GetChild(10);
         house = int.Parse(transform.parent.name.Substring(transform.parent.name.Length - 1));
         index = int.Parse(transform.name);
         row = CalculateRow(house, index);
         column = CalculateColumn(house, index);
         notes = transform.GetChild(0);
+        leftPanel = GameObject.Find("LeftPanel").transform;
         GetValue();
         if (buttonText.text == "")
         {
@@ -55,6 +57,7 @@ public class SudokuCell : MonoBehaviour
         {
             if (canChange)
             {
+                TrackChange();
                 if (currentDigit == "C")
                 {
                     if (buttonText.text == "")
@@ -84,7 +87,14 @@ public class SudokuCell : MonoBehaviour
         {
             if (buttonText.text == "")
             {
-                notes.GetComponent<SudokuNotes>().EnableNote(int.Parse(currentDigit));
+                if (currentDigit == "C")
+                {
+                    notes.GetComponent<SudokuNotes>().ClearNotes();
+                }
+                else
+                {
+                    notes.GetComponent<SudokuNotes>().EnableNote(int.Parse(currentDigit));
+                }
             }
         }
         IsPuzzleFinished();
@@ -95,7 +105,7 @@ public class SudokuCell : MonoBehaviour
         Transform houseTemp;
         for (int i = 0; i < 9; i++)
         {
-            houseTemp = gameArea.GetChild(i + 1);
+            houseTemp = gameArea.GetChild(i);
             for (int j = 0; j < 9; j++)
             {
                 if (houseTemp.GetChild(j).GetComponent<SudokuCell>().GetCurrentValue() == "")
@@ -199,5 +209,24 @@ public class SudokuCell : MonoBehaviour
     public void EnableNotes(bool enable)
     {
         notes.GetComponent<SudokuNotes>().EnableNotes(enable);
+    }
+
+    private void TrackChange()
+    {
+        Transform undoButton = leftPanel.GetChild(0).GetComponent<Transform>();
+        undoButton.GetComponent<SudokuUndo>().AddNumberChange(house, index, buttonText.text);
+    }
+
+    public void UndoChange(string savedValue)
+    {
+        buttonText.text = savedValue;
+        if (buttonText.text == "")
+        {
+            EnableNotes(true);
+        }
+        else
+        {
+            EnableNotes(false);
+        }
     }
 }
