@@ -342,19 +342,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 440251369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 440251371}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &440251369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 440251366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15125286b72e8e54da03dda4ef4bbe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: ddaffdc4bcefac442a4c4bb5b769265d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: MainMenu
@@ -731,19 +719,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 713729257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 713729259}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &713729257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,10 +767,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 713729254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15125286b72e8e54da03dda4ef4bbe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ef3b2fed6525ed45882617f9923cee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: WordleMM
 --- !u!1 &1037792192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,19 +1568,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1465325343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1465325345}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1465325343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,10 +1616,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1465325340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15125286b72e8e54da03dda4ef4bbe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: bdbda2e35e4f4434492b1ca0238d0ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SetMM
 --- !u!1 &1877886293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,19 +1703,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1877886296}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1877886298}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1877886296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,10 +1751,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1877886293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15125286b72e8e54da03dda4ef4bbe2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 86d86e17d3b8b274987092a292c4fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: CrossSumMM
 --- !u!1 &1986776032
 GameObject:
   m_ObjectHideFlags: 0

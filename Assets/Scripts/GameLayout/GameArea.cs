@@ -10,9 +10,21 @@ public class GameArea : MonoBehaviour
     void Start()
     {
         master = GameObject.Find("Master");
-        if (master.GetComponent<GameState>().gameChoice == "Sudoku")
+        if (master.GetComponent<GameState>().gameChoice == "CrossSum")
+        {
+            
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Set")
+        {
+
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Sudoku")
         {
             GetComponent<SudokuPuzzle>().PlaySudoku();
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Wordle")
+        {
+            GetComponent<WordleLayout>().StartWordle(5);
         }
     }
 }
