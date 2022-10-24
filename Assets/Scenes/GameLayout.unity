@@ -468,7 +468,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 495199003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c450bd4aa4ec4134d8680dabf63f2c2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ada7a0fe5cee5e48927012f888bc5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 8853605324915298242, guid: c1a2cea925156284eb8bb83b3fe4aa2b, type: 3}
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1093311958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83a9f8e529f8b54a8aca9bc0bb03199, type: 3}
+  m_Script: {fileID: 11500000, guid: b3f9e7f492dae254da952b2ae76ddd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 8853605324915298242, guid: c1a2cea925156284eb8bb83b3fe4aa2b, type: 3}
@@ -987,7 +987,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1298937357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53044f93dfd8c045973bda1b635a2c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ae55d9efab504c42a582bf41ae80090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1337272106
