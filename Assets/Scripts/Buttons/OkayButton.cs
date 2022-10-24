@@ -8,19 +8,21 @@ public class OkayButton : MonoBehaviour
 {
 
     private Button button;
-    private string sceneName;
+    public string sceneName;
 
     // Start is called before the first frame update
     void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OkayClick);
-        sceneName = "PuzzleChoice";
     }
 
     void OkayClick()
     {
         transform.parent.gameObject.SetActive(false);
-        SceneManager.LoadScene(sceneName);
+        if (sceneName != "")
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

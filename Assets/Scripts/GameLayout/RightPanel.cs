@@ -17,7 +17,8 @@ public class RightPanel : MonoBehaviour
         rightPanel = GetComponent<Transform>();
         CreateMenuButton(0f);
         CreateHintButton(1f);
-        CreateQuitButton(2f);
+        CreateHowToButton(2f);
+        CreateQuitButton(3f);
     }
 
     void CreateMenuButton(float number)
@@ -38,6 +39,16 @@ public class RightPanel : MonoBehaviour
         TMP_Text buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Hint";
         temp.AddComponent<HintButton>();
+    }
+
+    void CreateHowToButton(float number)
+    {
+        GameObject temp = Instantiate(buttonPrefab, new Vector3(x,y - (number * 1.5f),z), Quaternion.identity, rightPanel);
+        temp.name = "HowToButton";
+        Button button = temp.GetComponent<Button>();
+        TMP_Text buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
+        buttonText.text = "How To Play";
+        temp.AddComponent<HowToButton>();
     }
 
     void CreateQuitButton(float number)

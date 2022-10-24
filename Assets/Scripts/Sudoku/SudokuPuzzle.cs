@@ -5,12 +5,47 @@ using UnityEngine.UI;
 
 public class SudokuPuzzle : MonoBehaviour
 {
+
+    public class RandomCell
+    {
+        public int Row;
+        public int Column;
+
+        public RandomCell(int Row, int Column)
+        {
+            this.Row = Row;
+            this.Column = Column;
+        }
+    }
+
     private int sudokuGridSize;
     private int sudokuHouseSize;
     private int sudokuDifficulty;
     private int[,] sudokuGrid;
     private int[,] solvedGrid;
     public SudokuPuzzle sudokuPuzzle;
+    private List<RandomCell> randomCellList;
+
+	public SudokuPuzzle(int sudokuGridSize, int sudokuDifficulty)
+	{
+        this.sudokuGridSize = sudokuGridSize;
+        this.sudokuDifficulty = sudokuDifficulty;
+
+        sudokuHouseSize = (int)(Mathf.Sqrt(sudokuGridSize));
+        randomCellList = new List<RandomCell>();
+        for (int i = 0; i < sudokuGridSize; i++)
+        {
+            for (int j = 0; j < sudokuGridSize; j++)
+            {
+                RandomCell temp = new RandomCell(i,j);
+                //Debug.Log(temp);
+                randomCellList.Add(temp);
+            }
+        }
+        solvedGrid = new int[sudokuGridSize,sudokuGridSize];
+        sudokuGrid = new int[sudokuGridSize,sudokuGridSize];
+        ResetGrid();
+	}
 
     public void PlaySudoku()
     {
@@ -36,18 +71,6 @@ public class SudokuPuzzle : MonoBehaviour
         sudokuPuzzle.RemoveCells();
         transform.GetComponent<SudokuLayout>().StartSudoku();
     }
-
-	public SudokuPuzzle(int sudokuGridSize, int sudokuDifficulty)
-	{
-        this.sudokuGridSize = sudokuGridSize;
-        this.sudokuDifficulty = sudokuDifficulty;
-
-        sudokuHouseSize = (int)(Mathf.Sqrt(sudokuGridSize));
-
-        solvedGrid = new int[sudokuGridSize,sudokuGridSize];
-        sudokuGrid = new int[sudokuGridSize,sudokuGridSize];
-        ResetGrid();
-	}
 
     public void CheckSolution()
     {
@@ -248,7 +271,7 @@ public class SudokuPuzzle : MonoBehaviour
 
     bool SolveGrid(int row = 0, int column = 0)
     {
-
+        int rand = 0;
         if (column >= sudokuGridSize) { row++; column = 0; }
 
         if (row >= sudokuGridSize) { return true; }
@@ -256,47 +279,61 @@ public class SudokuPuzzle : MonoBehaviour
         if (sudokuGrid[row,column] != 0) { return SolveGrid(row, (column + 1)); }
 
         List<int> cellList = CellAvailable(row, column);
-        foreach (int num in cellList)
+        while (cellList.Count > 0)
         {
-            sudokuGrid[row,column] = num;
+            rand = (cellList.Count + 1);
+            while (rand >= cellList.Count) { rand = (int)(Random.value * cellList.Count); }
+            sudokuGrid[row,column] = cellList[rand];
+            cellList.RemoveAt(rand);
             if (SolveGrid(row, (column + 1))) { return true; }
             sudokuGrid[row,column] = 0;
+            //cellList.RemoveAt(rand);
         }
         return false;
     }
 
+    RandomCell GetRandomCell(int rand)
+    {
+        return randomCellList[rand];
+    }
+
+    int GetRandomCellCount()
+    {
+        return randomCellList.Count;
+    }
+
+    void RemoveRandomCell(int rand)
+    {
+        randomCellList.RemoveAt(rand);
+        return;
+    }
+    
+
     void RemoveCells()
     {
         int cellValue = 0;
-        int randomRow = 0;
-        int randomColumn = 0;
         int cellsRemoved = 0;
+        int rand = 0;
         List<int> numbers = new List<int>();
         bool unique = true;
         int[,] tempGrid = new int[sudokuGridSize,sudokuGridSize];
 
-        int count = 0;
-        while (cellsRemoved < sudokuDifficulty)
+        //int count = 0;
+        while ((cellsRemoved < sudokuDifficulty) && (GetRandomCellCount() > 0))
         {
-            //PrintGrid();
-            //ZeroCounter();
-            count++;
-            if (count >= 150) { Debug.Log("Break 2"); break; }
+            //count++;
+            //if (count >= 90) { Debug.Log("Break 2"); break; }
 
-            randomRow = sudokuGridSize + 1;
-            randomColumn = sudokuGridSize + 1;
-            while (randomRow >= sudokuGridSize) { randomRow = (int)(Random.value * sudokuGridSize); }
-
-            while (randomColumn >= sudokuGridSize) { randomColumn = (int)(Random.value * sudokuGridSize); }
-            
-            if (sudokuGrid[randomRow,randomColumn] == 0) { continue; }
-
-            cellValue = sudokuGrid[randomRow,randomColumn];
-            sudokuGrid[randomRow,randomColumn] = 0;
-            numbers = CellAvailable(randomRow, randomColumn);
+            rand = GetRandomCellCount() + 1;
+            while (rand >= GetRandomCellCount()) { rand = (int)(Random.value * GetRandomCellCount()); }
+            RandomCell tempRandomNumber = GetRandomCell(rand);
+            RemoveRandomCell(rand);
+            cellValue = sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column];
+            sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column] = 0;
+            numbers = CellAvailable(tempRandomNumber.Row, tempRandomNumber.Column);
             if (numbers.Count <= 1)
             {
-                sudokuGrid[randomRow,randomColumn] = 0;
+                sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column] = 0;
                 cellsRemoved++;
                 continue;
             }
@@ -307,19 +344,19 @@ public class SudokuPuzzle : MonoBehaviour
             foreach (int num in numbers)
             {
                 CopyGrid(tempGrid, sudokuGrid);
-                sudokuGrid[randomRow,randomColumn] = num;
+                sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column] = num;
                 if (SolveGrid())
                 {
                     // More than one solution
                     CopyGrid(tempGrid, sudokuGrid);
-                    sudokuGrid[randomRow,randomColumn] = cellValue;
+                    sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column] = cellValue;
                     unique = false;
                     break;
                 }
             }
             if (unique)
             {
-                sudokuGrid[randomRow,randomColumn] = 0;
+                sudokuGrid[tempRandomNumber.Row,tempRandomNumber.Column] = 0;
                 cellsRemoved++;
             }
         }
