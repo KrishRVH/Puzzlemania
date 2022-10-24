@@ -57,7 +57,6 @@ public class SudokuCell : MonoBehaviour
         {
             if (canChange)
             {
-                TrackChange();
                 if (currentDigit == "C")
                 {
                     if (buttonText.text == "")
@@ -66,6 +65,7 @@ public class SudokuCell : MonoBehaviour
                     }
                     else
                     {
+                        TrackChange();
                         EnableNotes(true);
                         buttonText.text = "";
                     }
@@ -73,13 +73,18 @@ public class SudokuCell : MonoBehaviour
                 }
                 else if (currentDigit == buttonText.text)
                 {
+                    TrackChange();
                     EnableNotes(true);
                     buttonText.text = "";
                 }
                 else
                 {
-                    EnableNotes(false);
-                    buttonText.text = currentDigit;
+                    if (IsValidPlacement(currentDigit))
+                    {
+                        TrackChange();
+                        EnableNotes(false);
+                        buttonText.text = currentDigit;
+                    }
                 }
             }
         }
@@ -204,6 +209,76 @@ public class SudokuCell : MonoBehaviour
             case 22: return 8;
             default: return 0;
         }
+    }
+
+    bool IsValidPlacement(string value)
+    {
+        if (!IsValidRowPlacement(value)) { return false;}
+        else if (!IsValidColumnPlacement(value)) { return false; }
+        else if (!IsValidHousePlacement(value)) { return false; }
+        return true;
+    }
+
+    bool IsValidRowPlacement(string value)
+    {
+        List<int> houseList = new List<int>();
+        List<int> cellList = new List<int>();
+
+        houseList.Add(house - (house % 3));
+        houseList.Add((house - (house % 3)) + 1);
+        houseList.Add((house - (house % 3)) + 2);
+
+        cellList.Add(index - (index % 3));
+        cellList.Add((index - (index % 3)) + 1);
+        cellList.Add((index - (index % 3)) + 2);
+
+        foreach (int houseNum in houseList)
+        {
+            if (houseNum == house) { continue; }
+
+            Transform houseTemp = gameArea.GetChild(houseNum);
+            foreach (int indexNum in cellList)
+            {
+                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+            }
+        }
+        return true;
+    }
+
+    bool IsValidColumnPlacement(string value)
+    {
+        List<int> houseList = new List<int>();
+        List<int> cellList = new List<int>();
+
+        houseList.Add((house % 3));
+        houseList.Add(((house % 3)) + 3);
+        houseList.Add(((house % 3)) + 6);
+
+        cellList.Add((index % 3));
+        cellList.Add(((index % 3)) + 3);
+        cellList.Add(((index % 3)) + 6);
+
+        foreach (int houseNum in houseList)
+        {
+            if (houseNum == house) { continue; }
+
+            Transform houseTemp = gameArea.GetChild(houseNum);
+            foreach (int indexNum in cellList)
+            {
+                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+            }
+        }
+        return true;
+    }
+
+    bool IsValidHousePlacement(string value)
+    {
+        Transform houseTemp = transform.parent;
+        for (int i = 0; i < 9; i++)
+        {
+            if (value == houseTemp.GetChild(i).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+        }
+        return true;
     }
 
     public void EnableNotes(bool enable)
