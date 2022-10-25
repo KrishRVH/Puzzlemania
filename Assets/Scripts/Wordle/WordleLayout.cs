@@ -8,7 +8,7 @@ public class WordleLayout : MonoBehaviour
 {
 
     public GameObject keyboard;
-    public GameObject letterButton;
+    public GameObject guessLetter;
     private Transform gameArea;
     private int maxGuess = 6;
 
@@ -66,8 +66,8 @@ public class WordleLayout : MonoBehaviour
             float y = 5f - (i * 1.25f);
             for (int j = 0; j < wordLength; j++)
             {
-                float x = ((j * 1.1f) - (0.625f * (wordLength - 1)));
-                GameObject temp = Instantiate(letterButton, new Vector3(x,y,z), Quaternion.identity, gameArea);
+                float x = ((j * 1.1f) - ((wordLength * 0.55f) - 0.55f));
+                GameObject temp = Instantiate(guessLetter, new Vector3(x,y,z), Quaternion.identity, gameArea);
                 temp.name = j.ToString();
             }
         }

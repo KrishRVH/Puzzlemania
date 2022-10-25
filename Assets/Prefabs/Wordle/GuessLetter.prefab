@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6183476554163373088}
   - component: {fileID: 6826813504036892564}
   m_Layer: 5
-  m_Name: LetterButton
+  m_Name: GuessLetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

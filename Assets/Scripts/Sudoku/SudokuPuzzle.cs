@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SudokuPuzzle : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class SudokuPuzzle : MonoBehaviour
     private int[,] solvedGrid;
     public SudokuPuzzle sudokuPuzzle;
     private List<RandomCell> randomCellList;
+    GameObject winPanel;
 
 	public SudokuPuzzle(int sudokuGridSize, int sudokuDifficulty)
 	{
@@ -115,7 +117,16 @@ public class SudokuPuzzle : MonoBehaviour
             }
         }
         Debug.Log("Winner");
-        GameObject.Find("WinPanel").SetActive(true);
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject temp in rootObjects)
+        {
+            if (temp.name == "WinPanel")
+            {
+                winPanel = temp;
+                break;
+            }
+        }
+        winPanel.SetActive(true);
     }
 
     public int GetCellValue(int row, int column)

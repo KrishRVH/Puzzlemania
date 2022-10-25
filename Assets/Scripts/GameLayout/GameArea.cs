@@ -24,7 +24,7 @@ public class GameArea : MonoBehaviour
         }
         else if (master.GetComponent<GameState>().gameChoice == "Wordle")
         {
-            GetComponent<WordleLayout>().StartWordle(5);
+            GetComponent<WordlePuzzle>().PlayWordle();
         }
     }
 }

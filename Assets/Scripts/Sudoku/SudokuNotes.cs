@@ -41,7 +41,6 @@ public class SudokuNotes : MonoBehaviour
         {
             note.GetComponent<SudokuNote>().EnableNote(true);
         }
-        
     }
 
     public void ClearNotes()

@@ -1420,6 +1420,7 @@ GameObject:
   - component: {fileID: 1298937362}
   - component: {fileID: 1298937363}
   - component: {fileID: 1298937365}
+  - component: {fileID: 1298937366}
   m_Layer: 5
   m_Name: GameArea
   m_TagString: GameArea
@@ -1561,7 +1562,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyboard: {fileID: 572289888701197841, guid: 367101ee9f2037449b58ad8af67adc7e, type: 3}
-  letterButton: {fileID: 1088704611889989602, guid: ab132fde198ee8248bc9b7591d282abf, type: 3}
+  guessLetter: {fileID: 1088704611889989602, guid: ab132fde198ee8248bc9b7591d282abf, type: 3}
+--- !u!114 &1298937366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298937357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585119a18b489024a8f59122f3c44982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wordList: {fileID: 4900000, guid: e4af58f63e20c1445bfffd46861a1797, type: 3}
+  wordLength: 0
+  randWord: 
 --- !u!1 &1337272106
 GameObject:
   m_ObjectHideFlags: 0
