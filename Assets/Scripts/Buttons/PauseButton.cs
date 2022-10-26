@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MenuButton : MonoBehaviour
+public class PauseButton : MonoBehaviour
 {
 
     private Button button;
@@ -14,7 +14,7 @@ public class MenuButton : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(MenuClick);
+        button.onClick.AddListener(PauseClick);
         GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (GameObject temp in rootObjects)
         {
@@ -26,7 +26,7 @@ public class MenuButton : MonoBehaviour
         }
     }
 
-    void MenuClick()
+    void PauseClick()
     {
         pausePanel.SetActive(true);
     }

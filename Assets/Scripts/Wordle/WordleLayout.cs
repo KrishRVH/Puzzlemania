@@ -9,19 +9,21 @@ public class WordleLayout : MonoBehaviour
 
     public GameObject keyboard;
     public GameObject guessLetter;
+    public GameObject guessAreaPrefab;
+    public GameObject guessRowPrefab;
     private Transform gameArea;
-    private int maxGuess = 6;
+    private Transform guessArea;
+    private Transform guessRow;
 
     void Start()
     {
         gameArea = GetComponent<Transform>();
-        maxGuess = 6;
     }
 
-    public void StartWordle(int wordLength)
+    public void StartWordle(int wordLength, int maxGuesses)
     {
         gameArea = GetComponent<Transform>();
-        CreateGuessGrid(wordLength);
+        CreateGuessGrid(wordLength, maxGuesses);
         CreateKeyboard();
     }
 
@@ -58,16 +60,23 @@ public class WordleLayout : MonoBehaviour
         }
     }
 
-    void CreateGuessGrid(int wordLength)
+    void CreateGuessGrid(int wordLength, int maxGuesses)
     {
         int z = 2;
-        for (int i = 0; i < maxGuess; i++)
+        GameObject temp = Instantiate(guessAreaPrefab, new Vector3(0, 0, z), Quaternion.identity, gameArea);
+        temp.name = "GuessArea";
+        guessArea = temp.transform;
+
+        for (int i = 0; i < maxGuesses; i++)
         {
-            float y = 5f - (i * 1.25f);
+            float y = (float)maxGuesses - (i * 1.25f);
+            temp = Instantiate(guessRowPrefab, new Vector3(0, y, z), Quaternion.identity, guessArea);
+            temp.name = i.ToString();
+            guessRow = temp.transform;
             for (int j = 0; j < wordLength; j++)
             {
-                float x = ((j * 1.1f) - ((wordLength * 0.55f) - 0.55f));
-                GameObject temp = Instantiate(guessLetter, new Vector3(x,y,z), Quaternion.identity, gameArea);
+                float x = ((j * 1.1f) - ((wordLength - 1) * 0.55f));
+                temp = Instantiate(guessLetter, new Vector3(x, y, z), Quaternion.identity, guessRow);
                 temp.name = j.ToString();
             }
         }

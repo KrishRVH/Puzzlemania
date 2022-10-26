@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 16
+  controlID: 82
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 31
+  controlID: 21
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -219,8 +219,8 @@ MonoBehaviour:
     y: 0
     width: 389
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 259
     height: 947
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -362,22 +362,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs/Wordle
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs/Wordle
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Projects\Puzzlemania
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 50560000
-    m_LastClickedID: 22096
-    m_ExpandedIDs: 00000000545600006cb0000000ca9a3b
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: e6560000
+    m_LastClickedID: 22246
+    m_ExpandedIDs: 000000009656000098560000d0560000d4560000d656000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -405,7 +405,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000
+    m_ExpandedIDs: 000000009656000098560000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -430,9 +430,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: d4650000
-    m_LastClickedInstanceID: 26068
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000000000007e6e000072bc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -800,9 +800,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.9848127, y: -0.41769516, z: 4.9505463}
+    m_Target: {x: -1.6275178, y: -0.29902467, z: 4.992586}
     speed: 2
-    m_Value: {x: -3.9848127, y: -0.41769516, z: 4.9505463}
+    m_Value: {x: -1.6275178, y: -0.29902467, z: 4.992586}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -853,9 +853,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 14.945511
+    m_Target: 11.239797
     speed: 2
-    m_Value: 14.945511
+    m_Value: 11.239797
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -913,7 +913,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: dc22f9ffc623f9ff18abf9ff72abf9ffe2b1f9ffe8b2f9ff528efbff9c8efbffe68efbff308ffbff7a8ffbffc48ffbff3890fbff5890fbffa290fbffec90fbff3691fbff8091fbffca91fbff1492fbff8692fbffd092fbff1a93fbff6493fbffae93fbfff893fbff4294fbff8c94fbffd694fbff4a95fbffbe95fbff0896fbfff097fbff9298fbffbaa2fbfff6abfbff74adfbff54aefbfff8fafbff2afcfbffa805fcff7206fcffbc06fcfffe07fcff1208fcff2e08fcff3208fcffbef9fcffa210fdff7611fdff5412fdffbe3bfdffe825feff3226feff7427feff8827feffa427feffa827feff2cc0feffb40dffff340effffb40ffffff60fffff7e5cffff125effff505efffffe5fffff28fbffffda7f00006c97000004a100002aa3000034a300007ca3000060eb0000
+      m_ExpandedIDs: bcaafdff98cefdff74d5fdff6adcfdff08ebfdffe2f1fdff10fafdfffe50feff0251feff0851feff6251feff1c44ffff2244ffff7c44ffffe24bffffba52ffff3859ffff9259ffffda65ffff4c66ffffbe66ffff3067ffffa267ffff1468ffff1a68ffff7468ffff4669ffffe269ffff906affff7c74ffff8274ffffdc74ffffae75ffff1c76ffff707cffff0a7effffc87fffff2e8afffffa90ffffe898ffff4299ffffce9fffff28a0ffffd6a6ffff98adffff4abeffff14bfffff98c0ffffd8c1ffffa2ccffffc0d5ffffc2d6ffff48daffffc2daffff48e1fffface1ffffeae1ffff32e2ffff64f2ffff2cf7ffffc6faffffde920000c8980000009b00004a9d0000829f0000e4a100001ca4000022a60000a6a8000028ac0000b0ae00006ab30000dab7000012ba00004abc000084be000084c9000030e500000eea0000d2ee00000af1000042f3000060fe0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

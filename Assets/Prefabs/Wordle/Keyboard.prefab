@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 572289888701197840}
   - component: {fileID: 572289888701197846}
   - component: {fileID: 572289888701197847}
+  - component: {fileID: 4351970011156574276}
   m_Layer: 0
   m_Name: Keyboard
   m_TagString: Untagged
@@ -78,6 +79,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &4351970011156574276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572289888701197841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29ecdcc16843a7448d4435a3a151610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572289889323290125
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,20 +15,20 @@ public class RightPanel : MonoBehaviour
     void Start()
     {
         rightPanel = GetComponent<Transform>();
-        CreateMenuButton(0f);
+        CreatePauseButton(0f);
         CreateHintButton(1f);
         CreateHowToButton(2f);
         CreateQuitButton(3f);
     }
 
-    void CreateMenuButton(float number)
+    void CreatePauseButton(float number)
     {
         GameObject temp = Instantiate(buttonPrefab, new Vector3(x,y - (number * 1.5f),z), Quaternion.identity, rightPanel);
-        temp.name = "MenuButton";
+        temp.name = "PauseButton";
         Button button = temp.GetComponent<Button>();
         TMP_Text buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
-        buttonText.text = "Menu";
-        temp.AddComponent<MenuButton>();
+        buttonText.text = "Pause";
+        temp.AddComponent<PauseButton>();
     }
 
     void CreateHintButton(float number)
