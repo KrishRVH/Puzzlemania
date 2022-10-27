@@ -38,4 +38,13 @@ public class SetCard : MonoBehaviour
             image.color = selectedColor;
         }
     }
+
+    public void SetCardSymbol(Sprite zero, Sprite one, Sprite two, Sprite three, Sprite four)
+    {
+        transform.GetChild(0).GetComponent<Image>().sprite = zero;
+        transform.GetChild(1).GetComponent<Image>().sprite = one;
+        transform.GetChild(2).GetComponent<Image>().sprite = two;
+        transform.GetChild(3).GetComponent<Image>().sprite = three;
+        transform.GetChild(4).GetComponent<Image>().sprite = four;
+    }
 }
