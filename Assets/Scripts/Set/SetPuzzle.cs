@@ -16,7 +16,6 @@ public class SetPuzzle : MonoBehaviour
 
         public Card(int Number, int Filling, int Color, int Shape)
         {
-
             /*
                 .               0               1               2
                 Number  (#):    One         |   Two         |   Three
@@ -68,10 +67,12 @@ public class SetPuzzle : MonoBehaviour
     public Sprite s221;
     public Sprite s222;
     public List<Card> cardList;
+    public List<Card> selectedList;
 
     public void PlaySet()
     {
         cardList = new List<Card>();
+        selectedList = new List<Card>();
         CreateIterations();
         transform.GetComponent<SetLayout>().StartSet();
         initialFill();
@@ -113,10 +114,27 @@ public class SetPuzzle : MonoBehaviour
 
     public Card GetRandomCard()
     {
-        int rand = cardList.Count + 1;
-        while (rand >= cardList.Count) { rand = (int)(Random.value * cardList.Count); }
-        RemoveCardFromList(cardList[rand]);
-        return cardList[rand];
+        if (cardList.Count != 0)
+        {
+            int rand = cardList.Count + 1;
+            while (rand >= cardList.Count) { rand = (int)(Random.value * cardList.Count); }
+            Card tempCard = cardList[rand];
+            RemoveCardFromList(tempCard);
+            return tempCard;
+        }
+        else
+        {
+            CreateIterations();
+            for (int i = 0; i < 12; i++)
+            {
+                RemoveCardFromList(transform.GetChild(i).GetComponent<SetCard>().GetCardSymbol());
+            }
+            int rand = cardList.Count + 1;
+            while (rand >= cardList.Count) { rand = (int)(Random.value * cardList.Count); }
+            Card tempCard = cardList[rand];
+            RemoveCardFromList(tempCard);
+            return tempCard;
+        }
     }
 
     public void RemoveCardFromList(Card card)
@@ -128,31 +146,162 @@ public class SetPuzzle : MonoBehaviour
     {
         for (int i = 0; i < 12; i++)
         {
-            Card randCard = GetRandomCard();
-            Sprite sprite = GetSprite(randCard.Filling, randCard.Color, randCard.Shape);
-            if (randCard.Number == 0)
-            {
-                transform.GetChild(i).GetComponent<SetCard>().SetCardSymbol(blank, blank, sprite, blank, blank);
-            }
-            else if (randCard.Number == 1)
-            {
-                transform.GetChild(i).GetComponent<SetCard>().SetCardSymbol(blank, sprite, blank, sprite, blank);
-            }
-            else
-            {
-                transform.GetChild(i).GetComponent<SetCard>().SetCardSymbol(sprite, blank, sprite, blank, sprite);
-            }
+            FillCard(i);
+        }
+        UpdateAvailableSets();
+    }
+
+    public void FillCard(int index)
+    {
+        Card randCard = GetRandomCard();
+        Sprite sprite = GetSprite(randCard.Filling, randCard.Color, randCard.Shape);
+        if (randCard.Number == 0)
+        {
+            transform.GetChild(index).GetComponent<SetCard>().SetCardSymbol(randCard, blank, blank, sprite, blank, blank);
+        }
+        else if (randCard.Number == 1)
+        {
+            transform.GetChild(index).GetComponent<SetCard>().SetCardSymbol(randCard, blank, sprite, blank, sprite, blank);
+        }
+        else
+        {
+            transform.GetChild(index).GetComponent<SetCard>().SetCardSymbol(randCard, sprite, blank, sprite, blank, sprite);
         }
     }
 
-    public void fillEmptyCard()
+    public void UpdateSelectedList(Card card, bool selected)
     {
+        if (selected)
+        {
+            selectedList.Add(card);
+            if (selectedList.Count == 3)
+            {
+                IsValidSet(selectedList);
+            }
+        }
+        else
+        {
+            selectedList.Remove(card);
+        }
+    }
+    
+    public void IsValidSet(List<Card> list)
+    {
+        List<int> cardValues = new List<int>();
+        int[] temp = {0, 0, 0, 0};
+        cardValues.AddRange(temp);
+        foreach (Card card in list)
+        {
+            cardValues[0] += card.Number;
+            cardValues[1] += card.Filling;
+            cardValues[2] += card.Color;
+            cardValues[3] += card.Shape;
+        }
 
+        DeselectCards(selectedList);
+
+        foreach (int number in cardValues)
+        {
+            if (number % 3 != 0)
+            {
+                //Debug.Log("Invalid Set");
+                return;
+            }
+        }
+
+        //Debug.Log("Valid Set");
+        SwapCards(selectedList);
     }
 
-    public void findEmptyCards()
+    public bool isValid(List<Card> list)
     {
+        List<int> cardValues = new List<int>();
+        int[] temp = {0, 0, 0, 0};
+        cardValues.AddRange(temp);
+        foreach (Card card in list)
+        {
+            //Debug.Log(card.Number + card.Filling + card.Color + card.Shape);
+            cardValues[0] += card.Number;
+            cardValues[1] += card.Filling;
+            cardValues[2] += card.Color;
+            cardValues[3] += card.Shape;
+        }
 
+        foreach (int number in cardValues)
+        {
+            if (number % 3 != 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void SwapCards(List<Card> list)
+    {
+        foreach (Card card in list)
+        {
+            FillCard(GetCardIndex(card));
+        }
+        selectedList.Clear();
+        UpdateAvailableSets();
+    }
+
+    private int GetCardIndex(Card card)
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            if (card == transform.GetChild(i).GetComponent<SetCard>().GetCardSymbol())
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void DeselectCards(List<Card> list)
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            transform.GetChild(i).GetComponent<SetCard>().CardClick(true);
+        }
+    }
+
+    public int CountAvailableSets()
+    {
+        //Debug.Log("0");
+        int availableSets = 0;
+        List<Card> tempList = new List<Card>();
+        for (int i = 0; i < 10; i++)
+        {
+            //Debug.Log("1");
+            Card one = transform.GetChild(i).GetComponent<SetCard>().GetCardSymbol();
+            tempList.Add(one);
+            for (int j = (i + 1); j < 11; j++)
+            {
+                //Debug.Log("2");
+                Card two = transform.GetChild(j).GetComponent<SetCard>().GetCardSymbol();
+                tempList.Add(two);
+                for (int k = (j + 1); k < 12; k++)
+                {
+                    //Debug.Log("3");
+                    Card three = transform.GetChild(k).GetComponent<SetCard>().GetCardSymbol();
+                    tempList.Add(three);
+                    //Debug.Log("if");
+                    if (isValid(tempList)) { availableSets++; }
+                    tempList.Remove(three);
+                }
+                tempList.Remove(two);
+            }
+            tempList.Remove(one);
+        }
+        return availableSets;
+    }
+
+    public void UpdateAvailableSets()
+    {
+        GameObject.Find("BottomPanel").transform.GetComponent<BottomPanel>().UpdateTextBox(CountAvailableSets());
     }
 
     public Sprite GetSprite(int filling, int color, int shape)

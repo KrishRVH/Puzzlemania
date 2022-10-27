@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 114877965}
   - component: {fileID: 114877964}
   - component: {fileID: 114877963}
+  - component: {fileID: 114877967}
   m_Layer: 5
   m_Name: BottomPanel
   m_TagString: BottomPanel
@@ -223,6 +224,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -8.5}
   m_SizeDelta: {x: 24, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &114877967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114877962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0c4140069f80c45865f4455a7978ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setTextBox: {fileID: 5119544700406952342, guid: 54a4b068a5c283a43a1843f397e6efe9, type: 3}
 --- !u!1 &160742265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2653,7 @@ GameObject:
   - component: {fileID: 1495608955}
   - component: {fileID: 1495608954}
   m_Layer: 5
-  m_Name: HowToPanel
+  m_Name: HelpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3520,7 +3534,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

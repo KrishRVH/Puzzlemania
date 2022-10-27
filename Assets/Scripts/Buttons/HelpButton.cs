@@ -4,30 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HowToButton : MonoBehaviour
+public class HelpButton : MonoBehaviour
 {
 
     private Button button;
-    private GameObject howToPanel;
+    private GameObject helpPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(HowToClick);
+        button.onClick.AddListener(HelpClick);
         GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (GameObject temp in rootObjects)
         {
-            if (temp.name == "HowToPanel")
+            if (temp.name == "HelpPanel")
             {
-                howToPanel = temp;
+                helpPanel = temp;
                 break;
             }
         }
     }
 
-    void HowToClick()
+    void HelpClick()
     {
-        howToPanel.SetActive(true);
+        helpPanel.SetActive(true);
     }
 }

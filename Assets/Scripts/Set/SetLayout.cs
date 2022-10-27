@@ -11,11 +11,6 @@ public class SetLayout : MonoBehaviour
     public GameObject cardSymbolPrefab;
     private Transform gameArea;
 
-    void Start()
-    {
-        gameArea = GetComponent<Transform>();
-    }
-
     public void StartSet()
     {
         gameArea = GetComponent<Transform>();
