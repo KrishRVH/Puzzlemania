@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GuessArea : MonoBehaviour
@@ -20,6 +21,8 @@ public class GuessArea : MonoBehaviour
     private Color incorrectColor;
     private Color partialColor;
     private Color selectedColor;
+    private GameObject winPanel;
+    private GameObject losePanel;
 
     void Start()
     {
@@ -50,6 +53,23 @@ public class GuessArea : MonoBehaviour
         if (row >= maxGuesses)
         {
             // Lose
+            for (int i = 0; i < wordLength; i++)
+            {
+                UpdateGuessLetterColor(guessRow, i, correctColor);
+            }
+            ResetKeyboardLetterColor();
+            Debug.Log("Winner");
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (GameObject temp in rootObjects)
+            {
+                if (temp.name == "LosePanel")
+                {
+                    losePanel = temp;
+                    break;
+                }
+            }
+            losePanel.SetActive(true);
+            return;
         }
         else
         {
@@ -61,7 +81,6 @@ public class GuessArea : MonoBehaviour
     {
 
         if (index == guessIndex) { return; }
-
         UpdateGuessLetterColor(guessRow, guessIndex, defaultColor);
 
         wordLength = gameArea.GetComponent<WordlePuzzle>().wordLength;
@@ -113,7 +132,6 @@ public class GuessArea : MonoBehaviour
         if (!validWord) {  return; }
 
         UpdateGuessIndex(0);
-        ResetGuessRowColor(guessRow);
 
         if (submittedWord == randWord)
         {
@@ -123,6 +141,17 @@ public class GuessArea : MonoBehaviour
                 UpdateGuessLetterColor(guessRow, i, correctColor);
             }
             ResetKeyboardLetterColor();
+            Debug.Log("Winner");
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (GameObject temp in rootObjects)
+            {
+                if (temp.name == "WinPanel")
+                {
+                    winPanel = temp;
+                    break;
+                }
+            }
+            winPanel.SetActive(true);
             return;
         }
         CheckForCorrectLetters();
@@ -163,7 +192,7 @@ public class GuessArea : MonoBehaviour
                 if (submittedWord[i] == randWord[j])
                 {
                     UpdateKeyboardLetterColor(submittedWord[i].ToString(), partialColor);
-                    UpdateGuessLetterColor(guessRow, j, partialColor);
+                    UpdateGuessLetterColor(guessRow, i, partialColor);
                     submittedWord = submittedWord.Remove(i,1);
                     submittedWord = submittedWord.Insert(i,"-");
                     randWord = randWord.Remove(j,1);

@@ -16,7 +16,7 @@ public class GameArea : MonoBehaviour
         }
         else if (master.GetComponent<GameState>().gameChoice == "Set")
         {
-
+            GetComponent<SetPuzzle>().PlaySet();
         }
         else if (master.GetComponent<GameState>().gameChoice == "Sudoku")
         {
