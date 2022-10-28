@@ -147,9 +147,9 @@ GameObject:
   - component: {fileID: 7051448338263837370}
   - component: {fileID: 7051448338263837365}
   - component: {fileID: 7051448338263837364}
-  - component: {fileID: 2351039123125564717}
+  - component: {fileID: 4596104727733841958}
   m_Layer: 5
-  m_Name: Note
+  m_Name: CrossSumNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2351039123125564717
+--- !u!114 &4596104727733841958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7051448338263837366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4064ce80b2b344341b3d22df03369676, type: 3}
+  m_Script: {fileID: 11500000, guid: ff67710f36712fc46a0106133b34216d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0

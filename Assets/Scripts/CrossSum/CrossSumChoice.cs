@@ -14,11 +14,11 @@ public class CrossSumChoice : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnSudokuClick);
+        button.onClick.AddListener(OnCrossSumClick);
         master = GameObject.Find("Master");
     }
     
-    void OnSudokuClick()
+    void OnCrossSumClick()
     {
         master.GetComponent<GameState>().gameChoice = "CrossSum";
         SceneManager.LoadScene(sceneName);

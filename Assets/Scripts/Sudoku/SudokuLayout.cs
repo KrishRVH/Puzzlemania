@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class SudokuLayout : MonoBehaviour
 {
 
-    public GameObject house;
-    public GameObject toggles;
-    public GameObject inputTypes;
+    public GameObject housePrefab;
+    public GameObject togglesPrefab;
+    public GameObject inputTypesPrefab;
     private Transform gameArea;
 
     void Start()
@@ -20,7 +20,7 @@ public class SudokuLayout : MonoBehaviour
     {
         gameArea = GetComponent<Transform>();
         CreateSudokuGrid();
-        CreateToggleGrid();
+        CreateToggleRow();
         CreateInputTypes();
     }
 
@@ -36,7 +36,7 @@ public class SudokuLayout : MonoBehaviour
             {
                 x = -3 + (j * 3);
                 y = 3 - (i * 3);
-                GameObject temp = Instantiate(house, new Vector3(x,y,z), Quaternion.identity, gameArea);
+                GameObject temp = Instantiate(housePrefab, new Vector3(x,y,z), Quaternion.identity, gameArea);
                 switch(i.ToString() + j.ToString())
                 {
                     case "00": houseNumber = 0; break;
@@ -55,12 +55,12 @@ public class SudokuLayout : MonoBehaviour
         }
     }
 
-    void CreateToggleGrid()
+    void CreateToggleRow()
     {
         float x = 0.5f;
         float y = -5.25f;
         int z = 2;
-        GameObject temp = Instantiate(toggles, new Vector3(x,y,z), Quaternion.identity, gameArea);
+        GameObject temp = Instantiate(togglesPrefab, new Vector3(x,y,z), Quaternion.identity, gameArea);
         temp.name = "Toggles";
     }
 
@@ -69,7 +69,7 @@ public class SudokuLayout : MonoBehaviour
         float x = 5.5f;
         float y = -3.25f;
         int z = 2;
-        GameObject temp = Instantiate(inputTypes, new Vector3(x,y,z), Quaternion.identity, gameArea);
+        GameObject temp = Instantiate(inputTypesPrefab, new Vector3(x,y,z), Quaternion.identity, gameArea);
         temp.name = "InputTypes";
     }
 }

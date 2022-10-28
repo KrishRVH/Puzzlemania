@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -35,6 +36,7 @@ public class SetCard : MonoBehaviour
             image.color = defaultColor;
             if (deselect) { return; }
             transform.parent.GetComponent<SetPuzzle>().UpdateSelectedList(currentCard, false);
+            return;
         }
         else
         {

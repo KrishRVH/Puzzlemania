@@ -7,8 +7,8 @@ using TMPro;
 public class WordleLayout : MonoBehaviour
 {
 
-    public GameObject keyboard;
-    public GameObject guessLetter;
+    public GameObject keyboardPrefab;
+    public GameObject guessLetterPrefab;
     public GameObject guessAreaPrefab;
     public GameObject guessRowPrefab;
     private Transform gameArea;
@@ -32,7 +32,7 @@ public class WordleLayout : MonoBehaviour
         float x = 0f;
         float y = -5.5f;
         int z = 2;
-        GameObject temp = Instantiate(keyboard, new Vector3(x,y,z), Quaternion.identity, gameArea);
+        GameObject temp = Instantiate(keyboardPrefab, new Vector3(x,y,z), Quaternion.identity, gameArea);
         temp.name = "Keyboard";
 
         List<string> topRow = new List<string>();
@@ -76,7 +76,7 @@ public class WordleLayout : MonoBehaviour
             for (int j = 0; j < wordLength; j++)
             {
                 float x = ((j * 1.1f) - ((wordLength - 1) * 0.55f));
-                temp = Instantiate(guessLetter, new Vector3(x, y, z), Quaternion.identity, guessRow);
+                temp = Instantiate(guessLetterPrefab, new Vector3(x, y, z), Quaternion.identity, guessRow);
                 temp.name = j.ToString();
             }
         }

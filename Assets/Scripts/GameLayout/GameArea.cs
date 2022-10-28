@@ -12,7 +12,7 @@ public class GameArea : MonoBehaviour
         master = GameObject.Find("Master");
         if (master.GetComponent<GameState>().gameChoice == "CrossSum")
         {
-            
+            GetComponent<CrossSumPuzzle>().PlayCrossSum();
         }
         else if (master.GetComponent<GameState>().gameChoice == "Set")
         {

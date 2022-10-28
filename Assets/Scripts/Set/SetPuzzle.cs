@@ -198,19 +198,17 @@ public class SetPuzzle : MonoBehaviour
             cardValues[3] += card.Shape;
         }
 
-        DeselectCards(selectedList);
-
         foreach (int number in cardValues)
         {
             if (number % 3 != 0)
             {
-                //Debug.Log("Invalid Set");
+                DeselectCards();
                 return;
             }
         }
 
-        //Debug.Log("Valid Set");
         SwapCards(selectedList);
+        DeselectCards();
     }
 
     public bool isValid(List<Card> list)
@@ -220,7 +218,6 @@ public class SetPuzzle : MonoBehaviour
         cardValues.AddRange(temp);
         foreach (Card card in list)
         {
-            //Debug.Log(card.Number + card.Filling + card.Color + card.Shape);
             cardValues[0] += card.Number;
             cardValues[1] += card.Filling;
             cardValues[2] += card.Color;
@@ -260,8 +257,9 @@ public class SetPuzzle : MonoBehaviour
         return 0;
     }
 
-    private void DeselectCards(List<Card> list)
+    private void DeselectCards()
     {
+        selectedList.Clear();
         for (int i = 0; i < 12; i++)
         {
             transform.GetChild(i).GetComponent<SetCard>().CardClick(true);
@@ -270,31 +268,32 @@ public class SetPuzzle : MonoBehaviour
 
     public int CountAvailableSets()
     {
-        //Debug.Log("0");
         int availableSets = 0;
         List<Card> tempList = new List<Card>();
         for (int i = 0; i < 10; i++)
         {
-            //Debug.Log("1");
             Card one = transform.GetChild(i).GetComponent<SetCard>().GetCardSymbol();
             tempList.Add(one);
             for (int j = (i + 1); j < 11; j++)
             {
-                //Debug.Log("2");
                 Card two = transform.GetChild(j).GetComponent<SetCard>().GetCardSymbol();
                 tempList.Add(two);
                 for (int k = (j + 1); k < 12; k++)
                 {
-                    //Debug.Log("3");
                     Card three = transform.GetChild(k).GetComponent<SetCard>().GetCardSymbol();
                     tempList.Add(three);
-                    //Debug.Log("if");
+
                     if (isValid(tempList)) { availableSets++; }
                     tempList.Remove(three);
                 }
                 tempList.Remove(two);
             }
             tempList.Remove(one);
+        }
+        if (availableSets == 0)
+        {
+            initialFill();
+            return CountAvailableSets();
         }
         return availableSets;
     }

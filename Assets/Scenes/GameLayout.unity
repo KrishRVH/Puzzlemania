@@ -1919,6 +1919,8 @@ GameObject:
   - component: {fileID: 1298937366}
   - component: {fileID: 1298937367}
   - component: {fileID: 1298937368}
+  - component: {fileID: 1298937370}
+  - component: {fileID: 1298937369}
   m_Layer: 5
   m_Name: GameArea
   m_TagString: GameArea
@@ -2019,9 +2021,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b9e10a639c89f4980d888bf5c63c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  house: {fileID: 6512724811319593169, guid: 5c90503265d744346a04ab1b095b6d04, type: 3}
-  toggles: {fileID: 6514067916980624729, guid: 19cab2e46cc6a9e4fa73dc569f5d245f, type: 3}
-  inputTypes: {fileID: 4678270871638418293, guid: e48124389d63216419bad855014af794, type: 3}
+  housePrefab: {fileID: 6512724811319593169, guid: 5c90503265d744346a04ab1b095b6d04, type: 3}
+  togglesPrefab: {fileID: 6514067916980624729, guid: 19cab2e46cc6a9e4fa73dc569f5d245f, type: 3}
+  inputTypesPrefab: {fileID: 4678270871638418293, guid: e48124389d63216419bad855014af794, type: 3}
 --- !u!114 &1298937363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2059,8 +2061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c753b103dd43fde48a776808399a1d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboard: {fileID: 572289888701197841, guid: 367101ee9f2037449b58ad8af67adc7e, type: 3}
-  guessLetter: {fileID: 1088704611889989602, guid: ab132fde198ee8248bc9b7591d282abf, type: 3}
+  keyboardPrefab: {fileID: 572289888701197841, guid: 367101ee9f2037449b58ad8af67adc7e, type: 3}
+  guessLetterPrefab: {fileID: 1088704611889989602, guid: ab132fde198ee8248bc9b7591d282abf, type: 3}
   guessAreaPrefab: {fileID: 8800666687761302080, guid: 3bbc2e3080c12c34483ae185731fed16, type: 3}
   guessRowPrefab: {fileID: 8800666687761302080, guid: 69339951fae0b4044af68bd0a1b46177, type: 3}
 --- !u!114 &1298937366
@@ -2134,6 +2136,38 @@ MonoBehaviour:
   s220: {fileID: 21300000, guid: 393aaa8e023e4ae4da94a5f7c1d1fbef, type: 3}
   s221: {fileID: 21300000, guid: 18a98c19f5275464c82c75a1251faffc, type: 3}
   s222: {fileID: 21300000, guid: 65b9dc337ec00d347b8c23cca686823a, type: 3}
+--- !u!114 &1298937369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298937357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4df0ed346dc0b348b640fea0c6111e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1298937370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298937357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c4933afe928b240a5e78a2e383368e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  togglesPrefab: {fileID: 6514067916980624729, guid: ab9f4f273fed7884a846a218af9dc0bb, type: 3}
+  inputTypesPrefab: {fileID: 4678270871638418293, guid: 42971b9e11ff1b1478028c3f9c0e119b, type: 3}
+  emptyPrefab: {fileID: 8925337272373976580, guid: ab91499122364e64bbfa80b452d57a67, type: 3}
+  equalPrefab: {fileID: 1554488775251229064, guid: e38db6c32dab0f64b809f41fccc1127f, type: 3}
+  blankPrefab: {fileID: 7382374978746939881, guid: 7118153ae7fc145469eda07090a5898a, type: 3}
+  numberPrefab: {fileID: 512907282128010958, guid: 4b6469adf6c136d43bf5e17f6ff90ac2, type: 3}
+  resultPrefab: {fileID: 8829181655772107230, guid: 33d0cb23992cf8b45a83538b8ab3e088, type: 3}
+  operationPrefab: {fileID: 4195288430963239754, guid: 85ea7eb6161fef740a13b5618c1eafab, type: 3}
 --- !u!1 &1337272106
 GameObject:
   m_ObjectHideFlags: 0
