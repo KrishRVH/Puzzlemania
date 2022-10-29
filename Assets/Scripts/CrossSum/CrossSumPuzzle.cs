@@ -11,6 +11,7 @@ public class CrossSumPuzzle : MonoBehaviour
     public List<int> results;
     private List<bool> canDivide;
     private List<bool> canSubtract;
+    private Transform numbersTF;
 
     public void PlayCrossSum()
     {
@@ -25,6 +26,7 @@ public class CrossSumPuzzle : MonoBehaviour
         GenerateRandomOperations();
         CalculateResults();
         transform.GetComponent<CrossSumLayout>().StartCrossSum();
+        numbersTF = transform.GetChild(2);
     }
 
     private void GenerateRandomNumbers()
@@ -156,5 +158,18 @@ public class CrossSumPuzzle : MonoBehaviour
             case "/": return (temp / thirdValue);
             default: return 0;
         }
+    }
+
+    public void CheckSolution()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (numbers[i].ToString() != numbersTF.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue())
+            {
+                Debug.Log("Loser");
+                return;
+            }
+        }
+        Debug.Log("Winner");
     }
 }

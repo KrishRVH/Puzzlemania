@@ -94,7 +94,14 @@ public class CrossSumNumber : MonoBehaviour
 
     private void IsPuzzleFinished()
     {
-        //gameArea.GetComponent<SudokuPuzzle>().CheckSolution();
+        for (int i = 0; i < 9; i++)
+        {
+            if (numbers.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue() == "")
+            {
+                return;
+            }
+        }
+        gameArea.GetComponent<CrossSumPuzzle>().CheckSolution();
     }
 
     public string GetCurrentValue()
