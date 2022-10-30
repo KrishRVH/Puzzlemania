@@ -73,8 +73,13 @@ public class CrossSumNumber : MonoBehaviour
             {
                 if (IsValidPlacement(currentDigit))
                 {
+                    RemoveConflictingNotes();
                     TrackChange();
                     EnableNotes(false);
+                    if (buttonText.text != "")
+                    {
+                        DisableToggle(buttonText.text, false);
+                    }
                     DisableToggle(currentDigit, true);
                     buttonText.text = currentDigit;
                 }
@@ -102,16 +107,24 @@ public class CrossSumNumber : MonoBehaviour
     private void DisableToggle(string value, bool disable)
     {
         int index = (int.Parse(value) - 1);
-        toggles.GetChild(index).GetComponent<CrossSumToggleDigit>().DisableToggle(true);
-        for (int i = (index + 1); i < 11; i++)
+        if (disable)
         {
-            if (toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().IsDisabled())
+            toggles.GetChild(index).GetComponent<CrossSumToggleDigit>().DisableToggle(disable);
+            for (int i = (index + 1); i < 11; i++)
             {
-                continue;
+                if (toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().IsDisabled())
+                {
+                    continue;
+                }
+                toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().Toggle(true);
+                break;
             }
-            toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().Toggle(true);
-            break;
         }
+        else
+        {
+            toggles.GetChild(index).GetComponent<CrossSumToggleDigit>().DisableToggle(disable);
+        }
+
     }
 
     private void IsRowFinished()
@@ -215,6 +228,14 @@ public class CrossSumNumber : MonoBehaviour
 
     public void UndoChange(string savedValue)
     {
+        if (savedValue == "")
+        {
+            DisableToggle(buttonText.text, false); 
+        }
+        else
+        {
+            DisableToggle(savedValue, true);
+        }
         buttonText.text = savedValue;
         if (buttonText.text == "")
         {
@@ -223,6 +244,17 @@ public class CrossSumNumber : MonoBehaviour
         else
         {
             EnableNotes(false);
+        }
+    }
+
+    private void RemoveConflictingNotes()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (buttonText.text == transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(buttonText.text) - 1)).GetComponent<CrossSumNote>().GetCurrentValue())
+            {
+                transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(buttonText.text) - 1)).GetComponent<CrossSumNote>().EnableNote(false);
+            }
         }
     }
 }

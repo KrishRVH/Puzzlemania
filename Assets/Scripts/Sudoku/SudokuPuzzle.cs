@@ -28,7 +28,6 @@ public class SudokuPuzzle : MonoBehaviour
     private List<RandomCell> randomCellList;
     GameObject winPanel;
     public List<int> digitCount;
-    private Transform toggles;
 
     public void PlaySudoku()
     {
@@ -75,6 +74,9 @@ public class SudokuPuzzle : MonoBehaviour
         }
         CopyGrid(sudokuGrid,solvedGrid);
         RemoveCells();
+
+        transform.GetComponent<SudokuLayout>().StartSudoku();
+
         for (int i = 0; i < sudokuGridSize; i++)
         {
             for (int j = 0; j < sudokuGridSize; j++)
@@ -85,9 +87,6 @@ public class SudokuPuzzle : MonoBehaviour
                 }
             }
         }
-
-        transform.GetComponent<SudokuLayout>().StartSudoku();
-        toggles = transform.GetChild(9);
     }
 
     public void UpdateDigitCount(int index, bool add)
@@ -97,14 +96,14 @@ public class SudokuPuzzle : MonoBehaviour
             digitCount[index] += 1;
             if (digitCount[index] == 9)
             {
-                toggles.GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(true);
+                transform.GetChild(9).GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(true);
                 for (int i = (index + 1); i < 11; i++)
                 {
-                    if (toggles.GetChild(i).GetComponent<SudokuToggleDigit>().IsDisabled())
+                    if (transform.GetChild(9).GetChild(i).GetComponent<SudokuToggleDigit>().IsDisabled())
                     {
                         continue;
                     }
-                    toggles.GetChild(i).GetComponent<SudokuToggleDigit>().Toggle(true);
+                    transform.GetChild(9).GetChild(i).GetComponent<SudokuToggleDigit>().Toggle(true);
                     break;
                 }
             }
@@ -112,7 +111,7 @@ public class SudokuPuzzle : MonoBehaviour
         else
         {
             digitCount[index] -= 1;
-            toggles.GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(false);
+            transform.GetChild(9).GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(false);
         }
     }
 

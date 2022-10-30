@@ -83,8 +83,13 @@ public class SudokuCell : MonoBehaviour
                 {
                     if (IsValidPlacement(currentDigit))
                     {
+                        RemoveConflictingNotes(currentDigit);
                         TrackChange();
                         EnableNotes(false);
+                        if (buttonText.text != "")
+                        {
+                            UpdateDigitCount(buttonText.text, false);
+                        }
                         UpdateDigitCount(currentDigit, true);
                         buttonText.text = currentDigit;
                     }
@@ -334,6 +339,14 @@ public class SudokuCell : MonoBehaviour
 
     public void UndoChange(string savedValue)
     {
+        if (savedValue == "")
+        {
+            UpdateDigitCount(buttonText.text, false); 
+        }
+        else
+        {
+            UpdateDigitCount(savedValue, true);
+        }
         buttonText.text = savedValue;
         if (buttonText.text == "")
         {
@@ -342,6 +355,80 @@ public class SudokuCell : MonoBehaviour
         else
         {
             EnableNotes(false);
+        }
+    }
+
+    private void RemoveConflictingNotes(string value)
+    {
+        RemoveConflictingRowNotes(value);
+        RemoveConflictingColumnNotes(value);
+        RemoveConflictingHouseNotes(value);
+    }
+
+    private void RemoveConflictingRowNotes(string value)
+    {
+        List<int> houseList = new List<int>();
+        List<int> cellList = new List<int>();
+
+        houseList.Add(house - (house % 3));
+        houseList.Add((house - (house % 3)) + 1);
+        houseList.Add((house - (house % 3)) + 2);
+
+        cellList.Add(index - (index % 3));
+        cellList.Add((index - (index % 3)) + 1);
+        cellList.Add((index - (index % 3)) + 2);
+
+        foreach (int houseNum in houseList)
+        {
+            if (houseNum == house) { continue; }
+
+            Transform houseTemp = gameArea.GetChild(houseNum);
+            foreach (int indexNum in cellList)
+            {
+                if (value == houseTemp.GetChild(indexNum).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().GetCurrentValue())
+                {
+                    houseTemp.GetChild(indexNum).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().EnableNote(false);
+                }
+            }
+        }
+    }
+
+    private void RemoveConflictingColumnNotes(string value)
+    {
+        List<int> houseList = new List<int>();
+        List<int> cellList = new List<int>();
+
+        houseList.Add((house % 3));
+        houseList.Add(((house % 3)) + 3);
+        houseList.Add(((house % 3)) + 6);
+
+        cellList.Add((index % 3));
+        cellList.Add(((index % 3)) + 3);
+        cellList.Add(((index % 3)) + 6);
+
+        foreach (int houseNum in houseList)
+        {
+            if (houseNum == house) { continue; }
+
+            Transform houseTemp = gameArea.GetChild(houseNum);
+            foreach (int indexNum in cellList)
+            {
+                if (value == houseTemp.GetChild(indexNum).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().GetCurrentValue())
+                {
+                    houseTemp.GetChild(indexNum).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().EnableNote(false);
+                }
+            }
+        }
+    }
+
+    private void RemoveConflictingHouseNotes(string value)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (value == transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().GetCurrentValue())
+            {
+                transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<SudokuNote>().EnableNote(false);
+            }
         }
     }
 }

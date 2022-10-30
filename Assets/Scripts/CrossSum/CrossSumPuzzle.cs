@@ -71,17 +71,17 @@ public class CrossSumPuzzle : MonoBehaviour
     private void CheckSubtractionPossibilities()
     {
         if (numbers[0] - numbers[1] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[1] - numbers[2] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[0] - numbers[1]) - numbers[2] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         if (numbers[0] - numbers[3] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         if (numbers[1] - numbers[4] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         if (numbers[2] - numbers[5] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         if (numbers[3] - numbers[4] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[4] - numbers[5] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[3] - numbers[6] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[4] - numbers[7] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[5] - numbers[8] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[3] - numbers[4]) - numbers[5] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[0] - numbers[3]) - numbers[6] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[1] - numbers[4]) - numbers[7] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[0] - numbers[5]) - numbers[8] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         if (numbers[6] - numbers[7] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
-        if (numbers[7] - numbers[8] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
+        if ((numbers[6] - numbers[7]) - numbers[8] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         return;
     }
 
@@ -95,16 +95,16 @@ public class CrossSumPuzzle : MonoBehaviour
         string option = master.transform.GetComponent<GameState>().gameOption;
         if (option == "0") 
         {
-            string[] tempArray1 = {"+", "-"};
+            string[] tempArray1 = {"+", "*"};
             operationList1.AddRange(tempArray1);
 
-            string[] tempArray2 = {"+", "-"};
+            string[] tempArray2 = {"+", "*"};
             operationList2.AddRange(tempArray2);
 
-            string[] tempArray3 = {"+"};
+            string[] tempArray3 = {"+", "*"};
             operationList3.AddRange(tempArray3);
 
-            string[] tempArray4 = {"+"};
+            string[] tempArray4 = {"+", "*"};
             operationList4.AddRange(tempArray4);
         }
         else if (option == "1")

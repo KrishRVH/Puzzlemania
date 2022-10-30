@@ -32,7 +32,12 @@ public class OptionsPanel : MonoBehaviour
         {
             CreateWordleOptions();
         }
-        //transform.gameObject.SetActive(false);
+        CreateBackButton();
+    }
+
+    private void CreateBackButton()
+    {
+        
     }
 
     private void CreateCrossSumOptions()

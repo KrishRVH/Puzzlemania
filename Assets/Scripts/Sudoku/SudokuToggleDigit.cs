@@ -20,7 +20,7 @@ public class SudokuToggleDigit : MonoBehaviour
             isToggled = true;
             image.color = Color.green;
         }
-        else
+        else if (!isDisabled)
         {
             isToggled = false;
             image.color = Color.white;
@@ -55,8 +55,9 @@ public class SudokuToggleDigit : MonoBehaviour
 
     public void DisableToggle(bool disable)
     {
+        image = GetComponent<Image>();
         isDisabled = disable;
-        if (isDisabled)
+        if (disable)
         {
             isToggled = false;
             image.color = Color.gray;
@@ -93,6 +94,7 @@ public class SudokuToggleDigit : MonoBehaviour
 
     public void Toggle(bool toggle)
     {
+        image = GetComponent<Image>();
         if (toggle && isToggled)
         {
             return;
@@ -100,12 +102,12 @@ public class SudokuToggleDigit : MonoBehaviour
         else if (toggle && !isToggled)
         {
             isToggled = !isToggled;
-            image.color = Color.green;;
+            image.color = Color.green;
         }
         else if (!toggle && isToggled)
         {
             isToggled = !isToggled;
-            image.color = Color.white;;
+            image.color = Color.white;
         }
         else if (!toggle && !isToggled)
         {

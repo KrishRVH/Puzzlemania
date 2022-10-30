@@ -26,7 +26,7 @@ public class SudokuNote : MonoBehaviour
         cell = transform.parent.parent;
         house = cell.GetComponent<SudokuCell>().house;
         index = cell.GetComponent<SudokuCell>().index;
-        toggles = gameArea.GetChild(9);
+        toggles = gameArea.GetChild(8);
         inputTypes = gameArea.GetChild(10);
         button = GetComponent<Button>();
         buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
