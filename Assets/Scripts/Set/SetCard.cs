@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -44,6 +45,32 @@ public class SetCard : MonoBehaviour
             image.color = selectedColor;
             transform.parent.GetComponent<SetPuzzle>().UpdateSelectedList(currentCard, true);
         }
+    }
+
+    IEnumerator InvalidSetAnimation()
+    { 
+        image.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        image.color = defaultColor;
+        selected = false;
+    }
+
+    public void ShowInvalidSet()
+    {
+        StartCoroutine(InvalidSetAnimation());
+    }
+
+    IEnumerator ValidSetAnimation()
+    { 
+        image.color = Color.green;
+        yield return new WaitForSeconds(0.25f);
+        image.color = defaultColor;
+        selected = false;
+    }
+
+    public void ShowValidSet()
+    {
+        StartCoroutine(ValidSetAnimation());
     }
 
     private void CopyCard(SetPuzzle.Card from, SetPuzzle.Card to)

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class WordlePuzzle : MonoBehaviour
 {
+    private GameObject master;
     public TextAsset wordList;
     public string[] words;
     public int wordLength;
@@ -14,7 +15,8 @@ public class WordlePuzzle : MonoBehaviour
 
     public void PlayWordle()
     {
-        wordLength = 5;
+        master = GameObject.Find("Master");
+        wordLength = (int.Parse(master.transform.GetComponent<GameState>().gameOption) + 3);
         maxGuesses = 6;
         words = Regex.Split( wordList.text, "\n|\r|\r\n" );
         List<string> filtered = new List<string>();
@@ -26,7 +28,6 @@ public class WordlePuzzle : MonoBehaviour
             }
         }
         randWord = filtered[(int)(Random.value * filtered.Count)];
-        //Debug.Log(randWord);
         transform.GetComponent<WordleLayout>().StartWordle(wordLength, maxGuesses);
     }
 }

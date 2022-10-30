@@ -58,7 +58,6 @@ public class GuessArea : MonoBehaviour
                 UpdateGuessLetterColor(guessRow, i, correctColor);
             }
             ResetKeyboardLetterColor();
-            Debug.Log("Winner");
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             foreach (GameObject temp in rootObjects)
             {
@@ -141,7 +140,6 @@ public class GuessArea : MonoBehaviour
                 UpdateGuessLetterColor(guessRow, i, correctColor);
             }
             ResetKeyboardLetterColor();
-            Debug.Log("Winner");
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             foreach (GameObject temp in rootObjects)
             {

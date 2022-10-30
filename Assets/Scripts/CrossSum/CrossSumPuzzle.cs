@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CrossSumPuzzle : MonoBehaviour
 {
+    private GameObject master;
     private List<int> numbers;
     public List<string> operations;
     public List<int> results;
     private List<bool> canDivide;
     private List<bool> canSubtract;
     private Transform numbersTF;
+    public string[,] equations;
+    private GameObject winPanel;
+    private GameObject losePanel;
 
     public void PlayCrossSum()
     {
+        master = GameObject.Find("Master");
         numbers = new List<int>();
         operations = new List<string>();
         results = new List<int>();
         canDivide = new List<bool>();
         canSubtract = new List<bool>();
+        equations = new string[5,5];
         GenerateRandomNumbers();
         CheckDivisionPossibilities();
         CheckSubtractionPossibilities();
@@ -81,45 +88,78 @@ public class CrossSumPuzzle : MonoBehaviour
     private void GenerateRandomOperations()
     {
         List<string> operationList1 = new List<string>();
-        string[] tempArray1 = {"+", "-", "*", "/"};
-        operationList1.AddRange(tempArray1);
-
         List<string> operationList2 = new List<string>();
-        string[] tempArray2 = {"+", "-", "*"};
-        operationList2.AddRange(tempArray2);
-
         List<string> operationList3 = new List<string>();
-        string[] tempArray3 = {"+", "*", "/"};
-        operationList3.AddRange(tempArray3);
-
         List<string> operationList4 = new List<string>();
-        string[] tempArray4 = {"+", "*"};
-        operationList4.AddRange(tempArray4);
+
+        string option = master.transform.GetComponent<GameState>().gameOption;
+        if (option == "0") 
+        {
+            string[] tempArray1 = {"+", "-"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "-"};
+            operationList2.AddRange(tempArray2);
+
+            string[] tempArray3 = {"+"};
+            operationList3.AddRange(tempArray3);
+
+            string[] tempArray4 = {"+"};
+            operationList4.AddRange(tempArray4);
+        }
+        else if (option == "1")
+        {
+            string[] tempArray1 = {"+", "-", "*"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "-", "*"};
+            operationList2.AddRange(tempArray2);
+
+            string[] tempArray3 = {"+", "*"};
+            operationList3.AddRange(tempArray3);
+
+            string[] tempArray4 = {"+", "*"};
+            operationList4.AddRange(tempArray4);
+        }
+        else if (option == "2")
+        {
+            string[] tempArray1 = {"+", "-", "*", "/"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "-", "*"};
+            operationList2.AddRange(tempArray2);
+
+            string[] tempArray3 = {"+", "*", "/"};
+            operationList3.AddRange(tempArray3);
+
+            string[] tempArray4 = {"+", "*"};
+            operationList4.AddRange(tempArray4);
+        }
 
         for (int i = 0; i < 12; i ++)
         {
             if (canDivide[i] && canSubtract[i])
             {
-                int rand = 4;
-                while (rand >= 4) { rand = ((int)(Random.value * 4)); }
+                int rand = (operationList1.Count + 1);
+                while (rand >= operationList1.Count) { rand = ((int)(Random.value * operationList1.Count)); }
                 operations.Add(operationList1[rand]);
             }
             else if (!canDivide[i] && canSubtract[i])
             {
-                int rand = 3;
-                while (rand >= 3) { rand = ((int)(Random.value * 3)); }
+                int rand = (operationList2.Count + 1);
+                while (rand >= operationList2.Count) { rand = ((int)(Random.value * operationList2.Count)); }
                 operations.Add(operationList2[rand]);
             }
             else if (canDivide[i] && !canSubtract[i])
             {
-                int rand = 3;
-                while (rand >= 3) { rand = ((int)(Random.value * 3)); }
+                int rand = (operationList3.Count + 1);
+                while (rand >= operationList3.Count) { rand = ((int)(Random.value * operationList3.Count)); }
                 operations.Add(operationList3[rand]);
             }
             else if (!canDivide[i] && !canSubtract[i])
             {
-                int rand = 2;
-                while (rand >= 2) { rand = ((int)(Random.value * 2)); }
+                int rand = (operationList4.Count + 1);
+                while (rand >= operationList4.Count) { rand = ((int)(Random.value * operationList4.Count)); }
                 operations.Add(operationList4[rand]);
             }
         }
@@ -162,14 +202,60 @@ public class CrossSumPuzzle : MonoBehaviour
 
     public void CheckSolution()
     {
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         for (int i = 0; i < 9; i++)
         {
             if (numbers[i].ToString() != numbersTF.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue())
             {
-                Debug.Log("Loser");
+                foreach (GameObject temp in rootObjects)
+                {
+                    if (temp.name == "LosePanel")
+                    {
+                        losePanel = temp;
+                        break;
+                    }
+                }
+                losePanel.SetActive(true);
                 return;
             }
         }
-        Debug.Log("Winner");
+        foreach (GameObject temp in rootObjects)
+        {
+            if (temp.name == "WinPanel")
+            {
+                winPanel = temp;
+                break;
+            }
+        }
+        winPanel.SetActive(true);
+    }
+
+    private int GetNumber(int index)
+    {
+        return int.Parse(numbersTF.GetChild(index).GetComponent<CrossSumNumber>().GetCurrentValue());
+    }
+
+    public void ValidateRowResult(int index)
+    {
+        if (results[(index / 3)] == GetAnswer(GetNumber(index), operations[((index / 3) * 5)], GetNumber((index + 1)), operations[(((index / 3) * 5) + 1)], GetNumber((index + 2))))
+        {
+            transform.GetChild(4).GetChild((index / 3)).GetComponent<CrossSumResult>().ShowValidResult();
+        }
+        else
+        {
+            transform.GetChild(4).GetChild((index / 3)).GetComponent<CrossSumResult>().ShowInvalidResult();
+        }
+    }
+
+    public void ValidateColumnnResult(int index)
+    {
+        if (results[((index % 3) + 3)] == GetAnswer(GetNumber(index), operations[(index + 2)], GetNumber((index + 3)), operations[(index + 7)], GetNumber((index + 6))))
+        {
+            transform.GetChild(4).GetChild(((index % 3) + 3)).GetComponent<CrossSumResult>().ShowValidResult();
+        }
+        else
+        {
+            transform.GetChild(4).GetChild(((index % 3) + 3)).GetComponent<CrossSumResult>().ShowInvalidResult();
+        }
     }
 }

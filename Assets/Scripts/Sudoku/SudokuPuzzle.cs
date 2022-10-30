@@ -19,6 +19,7 @@ public class SudokuPuzzle : MonoBehaviour
         }
     }
 
+    private GameObject master;
     private int sudokuGridSize;
     private int sudokuHouseSize;
     private int sudokuDifficulty;
@@ -51,9 +52,15 @@ public class SudokuPuzzle : MonoBehaviour
 
     public void PlaySudoku()
     {
+        master = GameObject.Find("Master");
         sudokuGridSize = 9;
         sudokuHouseSize = 3;
-        sudokuDifficulty = 40;
+
+        string option = master.transform.GetComponent<GameState>().gameOption;
+        if (option == "0") { sudokuDifficulty = 25; }
+        else if (option == "1") { sudokuDifficulty = 45; } 
+        else if (option == "2") { sudokuDifficulty = 65; }
+
         sudokuPuzzle = new SudokuPuzzle(sudokuGridSize, sudokuDifficulty);
         sudokuPuzzle.InitialGridFill();
         int count = 0;
@@ -62,10 +69,10 @@ public class SudokuPuzzle : MonoBehaviour
             count++;
             if (count >= 10)
             {
-                Debug.Log("Break 1");
+                //Debug.Log("Break 1");
                 break;
             }
-            Debug.Log("Failed SolveGrid");
+            //Debug.Log("Failed SolveGrid");
             sudokuPuzzle.ResetGrid();
             sudokuPuzzle.InitialGridFill();
         }
@@ -94,7 +101,6 @@ public class SudokuPuzzle : MonoBehaviour
                     house = transform.GetChild(item);
                     for (int k = 0; k < 3; k++)
                     {
-                        //Debug.Log(i + " " + j + " " + item + " " + (k + (j * 3)));
                         userGrid[(j + (i * 3)), columnCount] = int.Parse(house.GetChild((k + (j * 3))).GetComponent<SudokuCell>().GetCurrentValue());
                         columnCount++;
                     }
@@ -111,12 +117,12 @@ public class SudokuPuzzle : MonoBehaviour
             {
                 if (sudokuPuzzle.solvedGrid[i,j] != userGrid[i,j])
                 {
-                    Debug.Log("Incorrect");
+                    //Debug.Log("Incorrect");
                     return;
                 }
             }
         }
-        Debug.Log("Winner");
+        //Debug.Log("Winner");
         GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (GameObject temp in rootObjects)
         {

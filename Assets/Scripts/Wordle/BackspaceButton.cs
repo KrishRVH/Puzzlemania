@@ -28,7 +28,7 @@ public class BackspaceButton : MonoBehaviour
         wordLength = gameArea.GetComponent<WordlePuzzle>().wordLength;
         guessRow = guessArea.GetComponent<GuessArea>().GetCurrentGuessRow();
         guessIndex = guessArea.GetComponent<GuessArea>().GetCurrentGuessIndex();
-        if ((guessIndex == (wordLength - 1)) && (guessArea.GetChild(guessRow).GetChild(guessIndex).GetComponent<GuessLetter>().GetCurrentLetter() != ""))
+        if (guessArea.GetChild(guessRow).GetChild(guessIndex).GetComponent<GuessLetter>().GetCurrentLetter() != "")
         {
             guessArea.GetChild(guessRow).GetChild(guessIndex).GetComponent<GuessLetter>().UpdateLetter("");
         }

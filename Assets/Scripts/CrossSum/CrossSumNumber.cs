@@ -12,6 +12,7 @@ public class CrossSumNumber : MonoBehaviour
     private Transform toggles;
     private Transform gameArea;
     private Transform numbers;
+    private Transform results;
     private Transform notes;
     private Transform inputTypes;
     private Image image;
@@ -25,6 +26,7 @@ public class CrossSumNumber : MonoBehaviour
         image = GetComponent<Image>();
         gameArea = transform.parent.parent;
         numbers = transform.parent;
+        results = gameArea.GetChild(4);
         toggles = gameArea.GetChild(5);
         inputTypes = gameArea.GetChild(6);
         index = int.Parse(transform.name);
@@ -89,7 +91,35 @@ public class CrossSumNumber : MonoBehaviour
                 }
             }
         }
+        IsRowFinished();
+        IsColumnFinished();
         IsPuzzleFinished();
+    }
+
+    private void IsRowFinished()
+    {
+        for (int i = ((index / 3) * 3); i < (((index / 3) * 3) + 3); i++)
+        {
+            if (numbers.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue() == "")
+            {
+                results.GetChild((index / 3)).GetComponent<CrossSumResult>().ResetColor();
+                return;
+            }
+        }
+        gameArea.GetComponent<CrossSumPuzzle>().ValidateRowResult(((index / 3) * 3));
+    }
+
+    private void IsColumnFinished()
+    {
+        for (int i = (index % 3); i <= ((index % 3) + 6); i += 3)
+        {
+            if (numbers.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue() == "")
+            {
+                results.GetChild(((index % 3) + 3)).GetComponent<CrossSumResult>().ResetColor();
+                return;
+            }
+        }
+        gameArea.GetComponent<CrossSumPuzzle>().ValidateColumnnResult((index % 3));
     }
 
     private void IsPuzzleFinished()

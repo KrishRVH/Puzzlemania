@@ -177,6 +177,7 @@ public class SetPuzzle : MonoBehaviour
             if (selectedList.Count == 3)
             {
                 IsValidSet(selectedList);
+                selectedList.Clear();
             }
         }
         else
@@ -202,13 +203,19 @@ public class SetPuzzle : MonoBehaviour
         {
             if (number % 3 != 0)
             {
-                DeselectCards();
+                foreach (Card card in list)
+                {
+                    transform.GetChild(GetCardIndex(card)).GetComponent<SetCard>().ShowInvalidSet();
+                }
                 return;
             }
         }
 
+        foreach (Card card in list)
+        {
+            transform.GetChild(GetCardIndex(card)).GetComponent<SetCard>().ShowValidSet();
+        }
         SwapCards(selectedList);
-        DeselectCards();
     }
 
     public bool isValid(List<Card> list)
@@ -241,7 +248,6 @@ public class SetPuzzle : MonoBehaviour
         {
             FillCard(GetCardIndex(card));
         }
-        selectedList.Clear();
         UpdateAvailableSets();
     }
 
@@ -255,15 +261,6 @@ public class SetPuzzle : MonoBehaviour
             }
         }
         return 0;
-    }
-
-    private void DeselectCards()
-    {
-        selectedList.Clear();
-        for (int i = 0; i < 12; i++)
-        {
-            transform.GetChild(i).GetComponent<SetCard>().CardClick(true);
-        }
     }
 
     public int CountAvailableSets()

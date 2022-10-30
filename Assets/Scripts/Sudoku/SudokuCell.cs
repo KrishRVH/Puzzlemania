@@ -122,6 +122,25 @@ public class SudokuCell : MonoBehaviour
         gameArea.GetComponent<SudokuPuzzle>().CheckSolution();
     }
 
+    IEnumerator ConflictAnimation()
+    { 
+        image.color = Color.red;
+        yield return new WaitForSeconds(0.35f);
+        if (canChange)
+        {
+            image.color = canChangeTrue;
+        }
+        else
+        {
+            image.color = canChangeFalse;
+        }
+    }
+
+    public void ShowConflict()
+    { 
+        StartCoroutine(ConflictAnimation());
+    }
+
     private void GetValue()
     {
         int cellValue = gameArea.GetComponent<SudokuPuzzle>().sudokuPuzzle.GetCellValue(row, column);
@@ -213,10 +232,11 @@ public class SudokuCell : MonoBehaviour
 
     bool IsValidPlacement(string value)
     {
-        if (!IsValidRowPlacement(value)) { return false;}
-        else if (!IsValidColumnPlacement(value)) { return false; }
-        else if (!IsValidHousePlacement(value)) { return false; }
-        return true;
+        bool output = true;
+        if (!IsValidRowPlacement(value)) { output = false;}
+        if (!IsValidColumnPlacement(value)) { output = false; }
+        if (!IsValidHousePlacement(value)) { output = false; }
+        return output;
     }
 
     bool IsValidRowPlacement(string value)
@@ -239,7 +259,11 @@ public class SudokuCell : MonoBehaviour
             Transform houseTemp = gameArea.GetChild(houseNum);
             foreach (int indexNum in cellList)
             {
-                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue())
+                {
+                    houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().ShowConflict();
+                    return false;
+                }
             }
         }
         return true;
@@ -265,7 +289,11 @@ public class SudokuCell : MonoBehaviour
             Transform houseTemp = gameArea.GetChild(houseNum);
             foreach (int indexNum in cellList)
             {
-                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+                if (value == houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().GetCurrentValue())
+                {
+                    houseTemp.GetChild(indexNum).GetComponent<SudokuCell>().ShowConflict();
+                    return false;
+                }
             }
         }
         return true;
@@ -276,7 +304,11 @@ public class SudokuCell : MonoBehaviour
         Transform houseTemp = transform.parent;
         for (int i = 0; i < 9; i++)
         {
-            if (value == houseTemp.GetChild(i).GetComponent<SudokuCell>().GetCurrentValue()) { return false; }
+            if (value == houseTemp.GetChild(i).GetComponent<SudokuCell>().GetCurrentValue())
+            {
+                houseTemp.GetChild(i).GetComponent<SudokuCell>().ShowConflict();
+                return false;
+            }
         }
         return true;
     }

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class WordleChoice : MonoBehaviour
 {
     private Button button;
-    private string sceneName = "GameLayout";
     private GameObject master;
+    private GameObject optionsPanel;
 
     void Start()
     {
@@ -21,6 +20,15 @@ public class WordleChoice : MonoBehaviour
     void OnSudokuClick()
     {
         master.GetComponent<GameState>().gameChoice = "Wordle";
-        SceneManager.LoadScene(sceneName);
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject temp in rootObjects)
+        {
+            if (temp.name == "OptionsPanel")
+            {
+                optionsPanel = temp;
+                break;
+            }
+        }
+        optionsPanel.SetActive(true);
     }
 }

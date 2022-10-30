@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class GameState : MonoBehaviour
 {
     public string gameChoice;
+    public string gameOption;
 
     void Start()
     {
         gameChoice = "";
+        gameOption = "";
     }
 }
