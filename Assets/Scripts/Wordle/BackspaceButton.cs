@@ -23,7 +23,7 @@ public class BackspaceButton : MonoBehaviour
         guessArea = gameArea.GetChild(0);
     }
 
-    void BackspaceClick()
+    public void BackspaceClick()
     {
         wordLength = gameArea.GetComponent<WordlePuzzle>().wordLength;
         guessRow = guessArea.GetComponent<GuessArea>().GetCurrentGuessRow();

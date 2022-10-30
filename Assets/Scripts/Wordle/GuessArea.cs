@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -23,6 +25,8 @@ public class GuessArea : MonoBehaviour
     private Color selectedColor;
     private GameObject winPanel;
     private GameObject losePanel;
+    private Regex lettersOnly;
+    private EventSystem eventSystem;
 
     void Start()
     {
@@ -35,6 +39,48 @@ public class GuessArea : MonoBehaviour
         incorrectColor = Color.gray;
         partialColor = Color.yellow;
         selectedColor = new Color(0.7f,0.7f,0.7f,1f);
+
+        string regexPatternLetters = @"^[a-zA-Z]$";
+        lettersOnly = new Regex(regexPatternLetters);
+
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject temp in rootObjects)
+        {
+            if (temp.name == "EventSystem")
+            {
+                eventSystem = temp.transform.GetComponent<EventSystem>();
+                break;
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            if ((Input.GetKeyDown(KeyCode.KeypadEnter)) || (Input.GetKeyDown(KeyCode.Return)))
+            {
+                SubmitGuess();
+            }
+            else if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                transform.parent.GetChild(1).GetChild(3).GetComponent<BackspaceButton>().BackspaceClick();
+            }
+            else if (IsInputLetter())
+            {
+                transform.GetChild(guessRow).GetChild(guessIndex).GetComponent<GuessLetter>().UpdateLetter(Input.inputString.ToUpper());
+                UpdateGuessIndex((guessIndex + 1));
+            }
+        }
+    }
+
+    private bool IsInputLetter()
+    {
+        if ((lettersOnly.IsMatch(Input.inputString)) && (Input.inputString.Length == 1))
+        {
+            return true;
+        }
+        return false;
     }
 
     public Color GetColor(string color)
@@ -96,6 +142,7 @@ public class GuessArea : MonoBehaviour
             guessIndex = index;
         }
         UpdateGuessLetterColor(guessRow, guessIndex, selectedColor);
+        eventSystem.SetSelectedGameObject(transform.GetChild(guessRow).GetChild(guessIndex).gameObject);
     }
 
     public int GetCurrentGuessRow() { return guessRow; }

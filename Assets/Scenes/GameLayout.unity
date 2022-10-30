@@ -2275,7 +2275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669541873dde31c49a65203d29eab78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sudokuPuzzle: {fileID: 0}
+  digitCount: 
 --- !u!114 &1298937364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585119a18b489024a8f59122f3c44982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordList: {fileID: 4900000, guid: e4af58f63e20c1445bfffd46861a1797, type: 3}
+  wordList: {fileID: 4900000, guid: f54524503b0f2604999bbeaabdeb928a, type: 3}
   words: []
   wordLength: 0
   maxGuesses: 0
