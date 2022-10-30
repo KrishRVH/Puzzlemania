@@ -207,15 +207,6 @@ public class CrossSumPuzzle : MonoBehaviour
         {
             if (numbers[i].ToString() != numbersTF.GetChild(i).GetComponent<CrossSumNumber>().GetCurrentValue())
             {
-                foreach (GameObject temp in rootObjects)
-                {
-                    if (temp.name == "LosePanel")
-                    {
-                        losePanel = temp;
-                        break;
-                    }
-                }
-                losePanel.SetActive(true);
                 return;
             }
         }

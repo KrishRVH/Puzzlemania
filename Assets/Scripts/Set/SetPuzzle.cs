@@ -68,11 +68,13 @@ public class SetPuzzle : MonoBehaviour
     public Sprite s222;
     public List<Card> cardList;
     public List<Card> selectedList;
+    private int setsFound;
 
     public void PlaySet()
     {
         cardList = new List<Card>();
         selectedList = new List<Card>();
+        setsFound = 0;
         CreateIterations();
         transform.GetComponent<SetLayout>().StartSet();
         initialFill();
@@ -216,6 +218,8 @@ public class SetPuzzle : MonoBehaviour
             transform.GetChild(GetCardIndex(card)).GetComponent<SetCard>().ShowValidSet();
         }
         SwapCards(selectedList);
+        setsFound++;
+        UpdateSetsFound();
     }
 
     public bool isValid(List<Card> list)
@@ -297,7 +301,12 @@ public class SetPuzzle : MonoBehaviour
 
     public void UpdateAvailableSets()
     {
-        GameObject.Find("BottomPanel").transform.GetComponent<BottomPanel>().UpdateTextBox(CountAvailableSets());
+        GameObject.Find("BottomPanel").transform.GetComponent<BottomPanel>().UpdateSetsAvailableTextBox(CountAvailableSets());
+    }
+
+    public void UpdateSetsFound()
+    {
+        GameObject.Find("BottomPanel").transform.GetComponent<BottomPanel>().UpdateSetsFoundTextBox(setsFound);
     }
 
     public Sprite GetSprite(int filling, int color, int shape)

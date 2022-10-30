@@ -67,6 +67,7 @@ public class SudokuCell : MonoBehaviour
                     {
                         TrackChange();
                         EnableNotes(true);
+                        UpdateDigitCount(buttonText.text, false);
                         buttonText.text = "";
                     }
 
@@ -75,6 +76,7 @@ public class SudokuCell : MonoBehaviour
                 {
                     TrackChange();
                     EnableNotes(true);
+                    UpdateDigitCount(currentDigit, false);
                     buttonText.text = "";
                 }
                 else
@@ -83,6 +85,7 @@ public class SudokuCell : MonoBehaviour
                     {
                         TrackChange();
                         EnableNotes(false);
+                        UpdateDigitCount(currentDigit, true);
                         buttonText.text = currentDigit;
                     }
                 }
@@ -143,7 +146,7 @@ public class SudokuCell : MonoBehaviour
 
     private void GetValue()
     {
-        int cellValue = gameArea.GetComponent<SudokuPuzzle>().sudokuPuzzle.GetCellValue(row, column);
+        int cellValue = gameArea.GetComponent<SudokuPuzzle>().GetCellValue(row, column);
         if (cellValue != 0)
         {
             buttonText.text = cellValue.ToString();
@@ -154,6 +157,11 @@ public class SudokuCell : MonoBehaviour
             image.color = canChangeTrue;
             canChange = true;
         }
+    }
+
+    private void UpdateDigitCount(string value, bool add)
+    {
+        gameArea.GetComponent<SudokuPuzzle>().UpdateDigitCount((int.Parse(value) - 1), add);
     }
 
     public string GetCurrentValue()

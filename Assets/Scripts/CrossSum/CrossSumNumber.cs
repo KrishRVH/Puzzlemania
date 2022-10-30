@@ -57,6 +57,7 @@ public class CrossSumNumber : MonoBehaviour
                 {
                     TrackChange();
                     EnableNotes(true);
+                    DisableToggle(buttonText.text, false);
                     buttonText.text = "";
                 }
 
@@ -65,6 +66,7 @@ public class CrossSumNumber : MonoBehaviour
             {
                 TrackChange();
                 EnableNotes(true);
+                DisableToggle(currentDigit, false);
                 buttonText.text = "";
             }
             else
@@ -73,6 +75,7 @@ public class CrossSumNumber : MonoBehaviour
                 {
                     TrackChange();
                     EnableNotes(false);
+                    DisableToggle(currentDigit, true);
                     buttonText.text = currentDigit;
                 }
             }
@@ -94,6 +97,21 @@ public class CrossSumNumber : MonoBehaviour
         IsRowFinished();
         IsColumnFinished();
         IsPuzzleFinished();
+    }
+
+    private void DisableToggle(string value, bool disable)
+    {
+        int index = (int.Parse(value) - 1);
+        toggles.GetChild(index).GetComponent<CrossSumToggleDigit>().DisableToggle(true);
+        for (int i = (index + 1); i < 11; i++)
+        {
+            if (toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().IsDisabled())
+            {
+                continue;
+            }
+            toggles.GetChild(i).GetComponent<CrossSumToggleDigit>().Toggle(true);
+            break;
+        }
     }
 
     private void IsRowFinished()

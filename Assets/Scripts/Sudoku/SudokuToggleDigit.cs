@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class SudokuToggleDigit : MonoBehaviour
 {
-    private Color notToggled = new Color(1f,1f,1f,1f);
-    private Color toggled = new Color(0f,1f,0f,1f);
     private bool isToggled;
     private Image image;
     private Button button;
+    private bool isDisabled = false;
 
     void Start()
     {
@@ -19,12 +18,12 @@ public class SudokuToggleDigit : MonoBehaviour
         if (transform.name == "C")
         {
             isToggled = true;
-            image.color = toggled;
+            image.color = Color.green;
         }
         else
         {
             isToggled = false;
-            image.color = notToggled;
+            image.color = Color.white;
         }
     }
 
@@ -35,14 +34,40 @@ public class SudokuToggleDigit : MonoBehaviour
 
     private void OnToggleClick()
     {
-        if (isToggled)
+        if (!isDisabled)
         {
-            return;
+            if (isToggled)
+            {
+                return;
+            }
+            else
+            {
+                UnToggleCheck();
+                Toggle(true);
+            }
+        }
+    }
+
+    public bool IsDisabled()
+    {
+        return isDisabled;
+    }
+
+    public void DisableToggle(bool disable)
+    {
+        isDisabled = disable;
+        if (isDisabled)
+        {
+            isToggled = false;
+            image.color = Color.gray;
+        }
+        else if (isToggled)
+        {
+            image.color = Color.green;
         }
         else
         {
-            UnToggleCheck();
-            Toggle(true);
+            image.color = Color.white;
         }
     }
 
@@ -75,12 +100,12 @@ public class SudokuToggleDigit : MonoBehaviour
         else if (toggle && !isToggled)
         {
             isToggled = !isToggled;
-            image.color = toggled;
+            image.color = Color.green;;
         }
         else if (!toggle && isToggled)
         {
             isToggled = !isToggled;
-            image.color = notToggled;
+            image.color = Color.white;;
         }
         else if (!toggle && !isToggled)
         {

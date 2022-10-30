@@ -6,6 +6,13 @@ using TMPro;
 
 public class SudokuNotes : MonoBehaviour
 {
+    private Transform gameArea;
+
+    void Start()
+    {
+        gameArea = transform.parent.parent.parent;
+    }
+
     public void EnableNotes(bool enable)
     {
         Transform note;

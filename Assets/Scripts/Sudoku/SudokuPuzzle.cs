@@ -25,46 +25,43 @@ public class SudokuPuzzle : MonoBehaviour
     private int sudokuDifficulty;
     private int[,] sudokuGrid;
     private int[,] solvedGrid;
-    public SudokuPuzzle sudokuPuzzle;
     private List<RandomCell> randomCellList;
     GameObject winPanel;
-
-	public SudokuPuzzle(int sudokuGridSize, int sudokuDifficulty)
-	{
-        this.sudokuGridSize = sudokuGridSize;
-        this.sudokuDifficulty = sudokuDifficulty;
-
-        sudokuHouseSize = (int)(Mathf.Sqrt(sudokuGridSize));
-        randomCellList = new List<RandomCell>();
-        for (int i = 0; i < sudokuGridSize; i++)
-        {
-            for (int j = 0; j < sudokuGridSize; j++)
-            {
-                RandomCell temp = new RandomCell(i,j);
-                //Debug.Log(temp);
-                randomCellList.Add(temp);
-            }
-        }
-        solvedGrid = new int[sudokuGridSize,sudokuGridSize];
-        sudokuGrid = new int[sudokuGridSize,sudokuGridSize];
-        ResetGrid();
-	}
+    public List<int> digitCount;
+    private Transform toggles;
 
     public void PlaySudoku()
     {
         master = GameObject.Find("Master");
         sudokuGridSize = 9;
-        sudokuHouseSize = 3;
+
+        digitCount = new List<int>();
+        int[] tempArray = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        digitCount.AddRange(tempArray);
+
+        sudokuHouseSize = (int)(Mathf.Sqrt(sudokuGridSize));
+        randomCellList = new List<RandomCell>();
+
+        for (int i = 0; i < sudokuGridSize; i++)
+        {
+            for (int j = 0; j < sudokuGridSize; j++)
+            {
+                RandomCell temp = new RandomCell(i,j);
+                randomCellList.Add(temp);
+            }
+        }
+
+        solvedGrid = new int[sudokuGridSize,sudokuGridSize];
+        sudokuGrid = new int[sudokuGridSize,sudokuGridSize];
 
         string option = master.transform.GetComponent<GameState>().gameOption;
         if (option == "0") { sudokuDifficulty = 25; }
         else if (option == "1") { sudokuDifficulty = 45; } 
         else if (option == "2") { sudokuDifficulty = 65; }
-
-        sudokuPuzzle = new SudokuPuzzle(sudokuGridSize, sudokuDifficulty);
-        sudokuPuzzle.InitialGridFill();
+        ResetGrid();
+        InitialGridFill();
         int count = 0;
-        while (!sudokuPuzzle.SolveGrid())
+        while (!SolveGrid())
         {
             count++;
             if (count >= 10)
@@ -73,12 +70,50 @@ public class SudokuPuzzle : MonoBehaviour
                 break;
             }
             //Debug.Log("Failed SolveGrid");
-            sudokuPuzzle.ResetGrid();
-            sudokuPuzzle.InitialGridFill();
+            ResetGrid();
+            InitialGridFill();
         }
-        sudokuPuzzle.CopyGrid(sudokuPuzzle.sudokuGrid,sudokuPuzzle.solvedGrid);
-        sudokuPuzzle.RemoveCells();
+        CopyGrid(sudokuGrid,solvedGrid);
+        RemoveCells();
+        for (int i = 0; i < sudokuGridSize; i++)
+        {
+            for (int j = 0; j < sudokuGridSize; j++)
+            {
+                if (sudokuGrid[i,j] != 0)
+                {
+                    UpdateDigitCount((sudokuGrid[i,j] - 1), true);
+                }
+            }
+        }
+
         transform.GetComponent<SudokuLayout>().StartSudoku();
+        toggles = transform.GetChild(9);
+    }
+
+    public void UpdateDigitCount(int index, bool add)
+    {
+        if (add)
+        {
+            digitCount[index] += 1;
+            if (digitCount[index] == 9)
+            {
+                toggles.GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(true);
+                for (int i = (index + 1); i < 11; i++)
+                {
+                    if (toggles.GetChild(i).GetComponent<SudokuToggleDigit>().IsDisabled())
+                    {
+                        continue;
+                    }
+                    toggles.GetChild(i).GetComponent<SudokuToggleDigit>().Toggle(true);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            digitCount[index] -= 1;
+            toggles.GetChild(index).GetComponent<SudokuToggleDigit>().DisableToggle(false);
+        }
     }
 
     public void CheckSolution()
@@ -108,21 +143,18 @@ public class SudokuPuzzle : MonoBehaviour
             }
         }
 
-        //PrintOtherGrid(sudokuPuzzle.solvedGrid);
-        //PrintOtherGrid(userGrid);
 
         for (int i = 0; i < sudokuGridSize; i++)
         {
             for (int j = 0; j < sudokuGridSize; j++)
             {
-                if (sudokuPuzzle.solvedGrid[i,j] != userGrid[i,j])
+                if (solvedGrid[i,j] != userGrid[i,j])
                 {
-                    //Debug.Log("Incorrect");
                     return;
                 }
             }
         }
-        //Debug.Log("Winner");
+
         GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (GameObject temp in rootObjects)
         {

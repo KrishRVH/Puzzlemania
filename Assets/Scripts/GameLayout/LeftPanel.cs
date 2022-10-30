@@ -17,14 +17,22 @@ public class LeftPanel : MonoBehaviour
     {
         master = GameObject.Find("Master");
         leftPanel = GetComponent<Transform>();
-        if (master.GetComponent<GameState>().gameChoice == "Sudoku")
-        {
-            CreateSudokuUndoButton(0f);
-        }
 
         if (master.GetComponent<GameState>().gameChoice == "CrossSum")
         {
             CreateCrossSumUndoButton(0f);
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Set")
+        {
+
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Sudoku")
+        {
+            CreateSudokuUndoButton(0f);
+        }
+        else if (master.GetComponent<GameState>().gameChoice == "Wordle")
+        {
+
         }
     }
 

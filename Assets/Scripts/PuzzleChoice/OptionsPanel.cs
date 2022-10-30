@@ -62,7 +62,7 @@ public class OptionsPanel : MonoBehaviour
         temp = Instantiate(buttonPrefab, new Vector3(0f,1.5f,2f), Quaternion.identity, optionsPanel);
         temp.name = "0";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
-        buttonText.text = "TimeAttack";
+        buttonText.text = "Time Attack";
 
         temp = Instantiate(buttonPrefab, new Vector3(0f,-1.5f,2f), Quaternion.identity, optionsPanel);
         temp.name = "1";
