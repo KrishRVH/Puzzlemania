@@ -12,7 +12,7 @@ public class CrossSumPuzzle : MonoBehaviour
     public List<string> operations;
     public List<int> results;
     private List<bool> canDivide;
-    private List<bool> canSubtract;
+    //private List<bool> canSubtract;
     private Transform numbersTF;
     public string[,] equations;
     private GameObject winPanel;
@@ -25,11 +25,11 @@ public class CrossSumPuzzle : MonoBehaviour
         operations = new List<string>();
         results = new List<int>();
         canDivide = new List<bool>();
-        canSubtract = new List<bool>();
+        //canSubtract = new List<bool>();
         equations = new string[5,5];
         GenerateRandomNumbers();
         CheckDivisionPossibilities();
-        CheckSubtractionPossibilities();
+        //CheckSubtractionPossibilities();
         GenerateRandomOperations();
         CalculateResults();
         transform.GetComponent<CrossSumLayout>().StartCrossSum();
@@ -68,6 +68,7 @@ public class CrossSumPuzzle : MonoBehaviour
         return;
     }
 
+    /*
     private void CheckSubtractionPossibilities()
     {
         if (numbers[0] - numbers[1] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
@@ -84,6 +85,7 @@ public class CrossSumPuzzle : MonoBehaviour
         if ((numbers[6] - numbers[7]) - numbers[8] >= 0) { canSubtract.Add(true); } else { canSubtract.Add(false); }
         return;
     }
+    */
 
     private void GenerateRandomOperations()
     {
@@ -93,6 +95,8 @@ public class CrossSumPuzzle : MonoBehaviour
         List<string> operationList4 = new List<string>();
 
         string option = master.transform.GetComponent<GameState>().gameOption;
+
+        /*
         if (option == "0") 
         {
             string[] tempArray1 = {"+", "*"};
@@ -135,9 +139,36 @@ public class CrossSumPuzzle : MonoBehaviour
             string[] tempArray4 = {"+", "*"};
             operationList4.AddRange(tempArray4);
         }
+        */
+
+        if (option == "0") 
+        {
+            string[] tempArray1 = {"+", "*"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "*"};
+            operationList2.AddRange(tempArray2);
+        }
+        else if (option == "1")
+        {
+            string[] tempArray1 = {"+", "-", "*"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "-", "*"};
+            operationList2.AddRange(tempArray2);
+        }
+        else if (option == "2")
+        {
+            string[] tempArray1 = {"+", "-", "*", "/"};
+            operationList1.AddRange(tempArray1);
+
+            string[] tempArray2 = {"+", "-", "*"};
+            operationList2.AddRange(tempArray2);
+        }
 
         for (int i = 0; i < 12; i ++)
         {
+            /*
             if (canDivide[i] && canSubtract[i])
             {
                 int rand = (operationList1.Count + 1);
@@ -161,6 +192,20 @@ public class CrossSumPuzzle : MonoBehaviour
                 int rand = (operationList4.Count + 1);
                 while (rand >= operationList4.Count) { rand = ((int)(Random.value * operationList4.Count)); }
                 operations.Add(operationList4[rand]);
+            }
+            */
+
+            if (canDivide[i])
+            {
+                int rand = (operationList1.Count + 1);
+                while (rand >= operationList1.Count) { rand = ((int)(Random.value * operationList1.Count)); }
+                operations.Add(operationList1[rand]);
+            }
+            else if (!canDivide[i])
+            {
+                int rand = (operationList2.Count + 1);
+                while (rand >= operationList2.Count) { rand = ((int)(Random.value * operationList2.Count)); }
+                operations.Add(operationList2[rand]);
             }
         }
     }
