@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117e5c75b33d04b4b92589ec1cb83b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  house: 0
+  index: 0
 --- !u!1 &4475655381519234216
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 02eb0c3bc180bd647aa7b877b569492c, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 02eb0c3bc180bd647aa7b877b569492c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

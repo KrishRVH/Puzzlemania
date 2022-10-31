@@ -21,6 +21,12 @@ public class OptionsButton : MonoBehaviour
 
     private void OptionClick()
     {
+        if (transform.name == "Back")
+        {
+            master.GetComponent<GameState>().gameChoice = "";
+            optionsPanel.gameObject.SetActive(false);
+            return;
+        }
         master.GetComponent<GameState>().gameOption = transform.name;
         optionsPanel.gameObject.SetActive(false);
         SceneManager.LoadScene(sceneName);

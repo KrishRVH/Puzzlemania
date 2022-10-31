@@ -71,6 +71,14 @@ public class GuessArea : MonoBehaviour
                 transform.GetChild(guessRow).GetChild(guessIndex).GetComponent<GuessLetter>().UpdateLetter(Input.inputString.ToUpper());
                 UpdateGuessIndex((guessIndex + 1));
             }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                UpdateGuessIndex((guessIndex + 1));
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                UpdateGuessIndex((guessIndex - 1));
+            }
         }
     }
 
@@ -129,14 +137,8 @@ public class GuessArea : MonoBehaviour
         UpdateGuessLetterColor(guessRow, guessIndex, defaultColor);
 
         wordLength = gameArea.GetComponent<WordlePuzzle>().wordLength;
-        if (index >= wordLength)
-        {
-            //UpdateGuessRow(guessRow + 1);
-        }
-        else if (index < 0)
-        {
-            //UpdateGuessRow(guessRow - 1);
-        }
+        if (index >= wordLength) {}
+        else if (index < 0) {}
         else
         {
             guessIndex = index;

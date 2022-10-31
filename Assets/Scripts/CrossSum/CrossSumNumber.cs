@@ -73,7 +73,7 @@ public class CrossSumNumber : MonoBehaviour
             {
                 if (IsValidPlacement(currentDigit))
                 {
-                    RemoveConflictingNotes();
+                    RemoveConflictingNotes(currentDigit);
                     TrackChange();
                     EnableNotes(false);
                     if (buttonText.text != "")
@@ -247,13 +247,13 @@ public class CrossSumNumber : MonoBehaviour
         }
     }
 
-    private void RemoveConflictingNotes()
+    private void RemoveConflictingNotes(string value)
     {
         for (int i = 0; i < 9; i++)
         {
-            if (buttonText.text == transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(buttonText.text) - 1)).GetComponent<CrossSumNote>().GetCurrentValue())
+            if (value == transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<CrossSumNote>().GetCurrentValue())
             {
-                transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(buttonText.text) - 1)).GetComponent<CrossSumNote>().EnableNote(false);
+                transform.parent.GetChild(i).GetChild(0).GetChild((int.Parse(value) - 1)).GetComponent<CrossSumNote>().EnableNote(false);
             }
         }
     }

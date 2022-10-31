@@ -32,29 +32,27 @@ public class OptionsPanel : MonoBehaviour
         {
             CreateWordleOptions();
         }
-        CreateBackButton();
-    }
-
-    private void CreateBackButton()
-    {
-        
     }
 
     private void CreateCrossSumOptions()
     {
         GameObject temp;
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,3f,2f), Quaternion.identity, optionsPanel);
+        float x = 0f;
+        float y = 3f;
+        float z = 0f;
+
+        temp = Instantiate(buttonPrefab, new Vector3(x,y,z), Quaternion.identity, optionsPanel);
         temp.name = "0";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Easy";
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,0f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,0f,z), Quaternion.identity, optionsPanel);
         temp.name = "1";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Medium";
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,-3f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,-y,z), Quaternion.identity, optionsPanel);
         temp.name = "2";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Hard";
@@ -64,12 +62,16 @@ public class OptionsPanel : MonoBehaviour
     {
         GameObject temp;
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,1.5f,2f), Quaternion.identity, optionsPanel);
+        float x = 0f;
+        float y = 1.5f;
+        float z = 0f;
+
+        temp = Instantiate(buttonPrefab, new Vector3(x,y,z), Quaternion.identity, optionsPanel);
         temp.name = "0";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Time Attack";
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,-1.5f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,-y,z), Quaternion.identity, optionsPanel);
         temp.name = "1";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Relaxed";
@@ -79,17 +81,21 @@ public class OptionsPanel : MonoBehaviour
     {
         GameObject temp;
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,3f,2f), Quaternion.identity, optionsPanel);
+        float x = 0f;
+        float y = 3f;
+        float z = 0f;
+
+        temp = Instantiate(buttonPrefab, new Vector3(x,y,z), Quaternion.identity, optionsPanel);
         temp.name = "0";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Easy";
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,0f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,0f,z), Quaternion.identity, optionsPanel);
         temp.name = "1";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Medium";
 
-        temp = Instantiate(buttonPrefab, new Vector3(0f,-3f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,-y,z), Quaternion.identity, optionsPanel);
         temp.name = "2";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "Hard";
@@ -99,42 +105,47 @@ public class OptionsPanel : MonoBehaviour
     {
         GameObject temp;
 
-        temp = Instantiate(buttonPrefab, new Vector3(-6.5f,1.25f,2f), Quaternion.identity, optionsPanel);
+        float x = 3f;
+        float xMultiplier = 3f;
+        float y = 2f;
+        float z = 0f;
+
+        temp = Instantiate(buttonPrefab, new Vector3((-xMultiplier * x),y,z), Quaternion.identity, optionsPanel);
         temp.name = "0";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "3 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(-2.25f,1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(-x,y,z), Quaternion.identity, optionsPanel);
         temp.name = "1";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "4 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(2.25f,1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,y,z), Quaternion.identity, optionsPanel);
         temp.name = "2";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "5 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(6.5f,1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3((xMultiplier * x),y,z), Quaternion.identity, optionsPanel);
         temp.name = "3";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "6 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(-6.5f,-1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3((-xMultiplier * x),-y,z), Quaternion.identity, optionsPanel);
         temp.name = "4";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "7 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(-2.25f,-1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(-x,-y,z), Quaternion.identity, optionsPanel);
         temp.name = "5";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "8 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(2.25f,-1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3(x,-y,z), Quaternion.identity, optionsPanel);
         temp.name = "6";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "9 Letter Word";
 
-        temp = Instantiate(buttonPrefab, new Vector3(6.5f,-1.25f,2f), Quaternion.identity, optionsPanel);
+        temp = Instantiate(buttonPrefab, new Vector3((xMultiplier * x),-y,z), Quaternion.identity, optionsPanel);
         temp.name = "7";
         buttonText = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         buttonText.text = "10 Letter Word";

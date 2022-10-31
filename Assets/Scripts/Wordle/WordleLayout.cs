@@ -24,13 +24,13 @@ public class WordleLayout : MonoBehaviour
     {
         gameArea = GetComponent<Transform>();
         CreateGuessGrid(wordLength, maxGuesses);
-        CreateKeyboard();
+        CreateKeyboard(maxGuesses);
     }
 
-    void CreateKeyboard()
+    void CreateKeyboard(int maxGuesses)
     {
         float x = 0f;
-        float y = -5.5f;
+        float y = (4f - ((float)maxGuesses * 1.15f));
         int z = 2;
         GameObject temp = Instantiate(keyboardPrefab, new Vector3(x,y,z), Quaternion.identity, gameArea);
         temp.name = "Keyboard";
@@ -62,15 +62,15 @@ public class WordleLayout : MonoBehaviour
 
     void CreateGuessGrid(int wordLength, int maxGuesses)
     {
-        int z = 2;
-        GameObject temp = Instantiate(guessAreaPrefab, new Vector3(0, 0, z), Quaternion.identity, gameArea);
+        float z = 2f;
+        GameObject temp = Instantiate(guessAreaPrefab, new Vector3(0f, 0f, z), Quaternion.identity, gameArea);
         temp.name = "GuessArea";
         guessArea = temp.transform;
 
         for (int i = 0; i < maxGuesses; i++)
         {
-            float y = (float)maxGuesses - (i * 1.25f);
-            temp = Instantiate(guessRowPrefab, new Vector3(0, y, z), Quaternion.identity, guessArea);
+            float y = 6f - (i * 1.15f);
+            temp = Instantiate(guessRowPrefab, new Vector3(0f, y, z), Quaternion.identity, guessArea);
             temp.name = i.ToString();
             guessRow = temp.transform;
             for (int j = 0; j < wordLength; j++)
