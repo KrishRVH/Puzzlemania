@@ -52,6 +52,8 @@ public class GuessArea : MonoBehaviour
                 break;
             }
         }
+        wordLength = gameArea.GetComponent<WordlePuzzle>().wordLength;
+        TrackGame(wordLength);
     }
 
     void Update()
@@ -198,6 +200,7 @@ public class GuessArea : MonoBehaviour
                     break;
                 }
             }
+            TrackWin(wordLength, (guessRow + 1));
             winPanel.SetActive(true);
             return;
         }
@@ -298,5 +301,35 @@ public class GuessArea : MonoBehaviour
                 transform.GetChild(i).GetChild(j).GetComponent<GuessLetter>().UpdateGuessLetterColor(defaultColor);
             }
         }
+    }
+
+    private void TrackGame(int wordLength)
+    {
+        StartCoroutine(WaitTenSeconds());
+        string tempString = "WordleGamesPlayed" + wordLength.ToString();
+        int temp = PlayerPrefs.GetInt(tempString, 0);
+        PlayerPrefs.SetInt(tempString, (temp + 1));
+        PlayerPrefs.Save();
+    }
+
+    IEnumerator WaitTenSeconds()
+    {
+        yield return new WaitForSecondsRealtime(10);
+    }
+
+    private void TrackWin(int wordLength, int guesses)
+    {
+        string tempString = "WordleGamesWon" + wordLength.ToString();
+        int temp = PlayerPrefs.GetInt(tempString, 0);
+        PlayerPrefs.SetInt(tempString, (temp + 1));
+        TrackGuessCount(wordLength, guesses);
+    }
+    
+    private void TrackGuessCount(int wordLength, int guesses)
+    {
+        string tempString = "WordleGuessCount" + wordLength.ToString() + "-" + guesses.ToString();
+        int temp = PlayerPrefs.GetInt(tempString, 0);
+        PlayerPrefs.SetInt(tempString, (temp + 1));
+        PlayerPrefs.Save();
     }
 }

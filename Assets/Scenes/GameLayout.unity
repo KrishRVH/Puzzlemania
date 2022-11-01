@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0c4140069f80c45865f4455a7978ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setTextBox: {fileID: 5119544700406952342, guid: 54a4b068a5c283a43a1843f397e6efe9, type: 3}
+  setTextBox: {fileID: 7043149876769303798, guid: 6e82e62427ed6724b950393fdec75475, type: 3}
 --- !u!1 &160742265
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
+  m_fontSize: 0.85
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1995,7 +1995,7 @@ GameObject:
   - component: {fileID: 1114663190}
   - component: {fileID: 1114663189}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3358,14 +3358,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132833f9de7a2324d95c4162e1cb0879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CrossSumLeftImage: {fileID: 21300000, guid: 165fe0eed87a68246ab2c4a3778b5017, type: 3}
-  CrossSumRightImage: {fileID: 21300000, guid: c4b1202d0e9ca8749b4334654f322ea5, type: 3}
-  SetLeftImage: {fileID: 21300000, guid: 4396b24cbf09bb64a9020ebbaf8c387a, type: 3}
-  SetRightImage: {fileID: 21300000, guid: 883faa1651e05be4aa36b087cec630b9, type: 3}
-  SudokuLeftImage: {fileID: 21300000, guid: d8e57df4ed0ce8a42b90a0cc3056a844, type: 3}
-  SudokuRightImage: {fileID: 21300000, guid: e315d393819a3e64f9b1afcf41e0f4a3, type: 3}
-  WordleLeftImage: {fileID: 21300000, guid: 569fed6cacf3cfb4c937904fca96cd79, type: 3}
-  WordleRightImage: {fileID: 21300000, guid: 2b2abd1b28f5bbd4eb87231f3b03e152, type: 3}
+  CrossSumLeftImage: {fileID: 21300000, guid: 5a9092c71c7186d44834172259ec4f8b, type: 3}
+  CrossSumRightImage: {fileID: 21300000, guid: 11510aed47b465d4b81302746a15a34a, type: 3}
+  SetLeftImage: {fileID: 21300000, guid: ec89a6d48c5a90a4cab25b5159a13079, type: 3}
+  SetRightImage: {fileID: 21300000, guid: 6def4571d00076d43a9cf9e511bfdd67, type: 3}
+  SudokuLeftImage: {fileID: 21300000, guid: 7d8f2e4ab7a8a414c9038afb339b1e83, type: 3}
+  SudokuRightImage: {fileID: 21300000, guid: eb5850e56dc54914e825099678da844c, type: 3}
+  WordleLeftImage: {fileID: 21300000, guid: 856b9628fe045fa4a8bffd95952171de, type: 3}
+  WordleRightImage: {fileID: 21300000, guid: 948d76c694ee1d84e85a26c003647922, type: 3}
 --- !u!1 &1495687071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,7 +4356,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920644371}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1920644373
 Camera:
   m_ObjectHideFlags: 0

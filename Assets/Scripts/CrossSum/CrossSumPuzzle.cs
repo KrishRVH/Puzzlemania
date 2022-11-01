@@ -34,6 +34,7 @@ public class CrossSumPuzzle : MonoBehaviour
         CalculateResults();
         transform.GetComponent<CrossSumLayout>().StartCrossSum();
         numbersTF = transform.GetChild(2);
+        TrackGame();
     }
 
     private void GenerateRandomNumbers()
@@ -263,6 +264,7 @@ public class CrossSumPuzzle : MonoBehaviour
                 break;
             }
         }
+        TrackWin();
         winPanel.SetActive(true);
     }
 
@@ -293,5 +295,25 @@ public class CrossSumPuzzle : MonoBehaviour
         {
             transform.GetChild(4).GetChild(((index % 3) + 3)).GetComponent<CrossSumResult>().ShowInvalidResult();
         }
+    }
+
+    private void TrackGame()
+    {
+        StartCoroutine(WaitTenSeconds());
+        int temp = PlayerPrefs.GetInt("CrossSumGamesPlayed", 0);
+        PlayerPrefs.SetInt("CrossSumGamesPlayed", (temp + 1));
+        PlayerPrefs.Save();
+    }
+
+    IEnumerator WaitTenSeconds()
+    {
+        yield return new WaitForSecondsRealtime(10);
+    }
+
+    private void TrackWin()
+    {
+        int temp = PlayerPrefs.GetInt("CrossSumGamesWon", 0);
+        PlayerPrefs.SetInt("CrossSumGamesWon", (temp + 1));
+        PlayerPrefs.Save();
     }
 }

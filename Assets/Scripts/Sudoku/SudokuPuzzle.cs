@@ -87,6 +87,8 @@ public class SudokuPuzzle : MonoBehaviour
                 }
             }
         }
+
+        TrackGame();
     }
 
     public void UpdateDigitCount(int index, bool add)
@@ -163,6 +165,7 @@ public class SudokuPuzzle : MonoBehaviour
                 break;
             }
         }
+        TrackWin();
         winPanel.SetActive(true);
     }
 
@@ -469,6 +472,26 @@ public class SudokuPuzzle : MonoBehaviour
                 gridTo[i,j] = gridFrom[i,j];
             }
         }
+    }
+
+    private void TrackGame()
+    {
+        StartCoroutine(WaitTenSeconds());
+        int temp = PlayerPrefs.GetInt("CrossSumGamesPlayed", 0);
+        PlayerPrefs.SetInt("CrossSumGamesPlayed", (temp + 1));
+        PlayerPrefs.Save();
+    }
+
+    IEnumerator WaitTenSeconds()
+    {
+        yield return new WaitForSecondsRealtime(10);
+    }
+
+    private void TrackWin()
+    {
+        int temp = PlayerPrefs.GetInt("CrossSumGamesWon", 0);
+        PlayerPrefs.SetInt("CrossSumGamesWon", (temp + 1));
+        PlayerPrefs.Save();
     }
 
 }

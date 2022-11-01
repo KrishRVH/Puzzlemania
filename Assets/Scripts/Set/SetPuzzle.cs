@@ -38,6 +38,7 @@ public class SetPuzzle : MonoBehaviour
         }
     }
 
+    private GameObject master;
     public Sprite blank;
     public Sprite s000;
     public Sprite s001;
@@ -69,9 +70,13 @@ public class SetPuzzle : MonoBehaviour
     public List<Card> cardList;
     public List<Card> selectedList;
     private int setsFound;
+    private bool relaxed;
 
     public void PlaySet()
     {
+        master = GameObject.Find("Master");
+        if (master.transform.GetComponent<GameState>().gameOption == "0") { relaxed = false; }
+        else { relaxed = true; }
         cardList = new List<Card>();
         selectedList = new List<Card>();
         setsFound = 0;
@@ -217,6 +222,14 @@ public class SetPuzzle : MonoBehaviour
         {
             transform.GetChild(GetCardIndex(card)).GetComponent<SetCard>().ShowValidSet();
         }
+        if (relaxed)
+        {
+            TrackSet();
+        }
+        else
+        {
+            TrackHighestSet();
+        }
         SwapCards(selectedList);
         setsFound++;
         UpdateSetsFound();
@@ -341,6 +354,22 @@ public class SetPuzzle : MonoBehaviour
             case 221: return s221;
             case 222: return s222;
             default: return s000;
+        }
+    }
+
+    private void TrackSet()
+    {
+        int temp = PlayerPrefs.GetInt("RelaxedTotalSets", 0);
+        PlayerPrefs.SetInt("RelaxedTotalSets", (temp + 1));
+        PlayerPrefs.Save();
+    }
+
+    private void TrackHighestSet()
+    {
+        if (setsFound > PlayerPrefs.GetInt("TimeAttackHighestSets", 0))
+        {
+            PlayerPrefs.SetInt("TimeAttackHighestSets", setsFound);
+            PlayerPrefs.Save();
         }
     }
 }

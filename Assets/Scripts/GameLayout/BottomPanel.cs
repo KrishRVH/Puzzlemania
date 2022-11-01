@@ -99,7 +99,7 @@ public class BottomPanel : MonoBehaviour
         float z = 2f;
         GameObject temp = Instantiate(setTextBox, new Vector3(x,y,z), Quaternion.identity, bottomPanel);
         temp.name = "SetTimerTextBox";
-        setTimerTextBox = temp.transform.GetComponent<TMP_Text>();
+        setTimerTextBox = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         setTimerTextBox.text = ("Time Remaining: " + (int)(timeRemaining));
     }
 
@@ -109,7 +109,7 @@ public class BottomPanel : MonoBehaviour
         float z = 2f;
         GameObject temp = Instantiate(setTextBox, new Vector3(x,y,z), Quaternion.identity, bottomPanel);
         temp.name = "SetsFoundTextBox";
-        setsFoundTextBox = temp.transform.GetComponent<TMP_Text>();
+        setsFoundTextBox = temp.transform.GetChild(0).GetComponent<TMP_Text>();
         setsFoundTextBox.text = ("Sets Found: 0");
     }
 
@@ -119,7 +119,7 @@ public class BottomPanel : MonoBehaviour
         float z = 2f;
         GameObject temp = Instantiate(setTextBox, new Vector3(x,y,z), Quaternion.identity, bottomPanel);
         temp.name = "SetsAvailableTextBox";
-        setsAvailableTextBox = temp.transform.GetComponent<TMP_Text>();
+        setsAvailableTextBox = temp.transform.GetChild(0).GetComponent<TMP_Text>();
     }
 
     public void UpdateSetsAvailableTextBox(int availableSets)

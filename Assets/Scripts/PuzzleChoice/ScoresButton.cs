@@ -4,30 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class OkayButton : MonoBehaviour
+public class ScoresButton : MonoBehaviour
 {
     private GameObject master;
     private Button button;
     public string sceneName;
+    private GameObject scoresPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         master = GameObject.Find("Master");
         button = GetComponent<Button>();
-        button.onClick.AddListener(OkayClick);
+        button.onClick.AddListener(ScoresClick);
     }
 
-    void OkayClick()
+    void ScoresClick()
     {
-        transform.parent.gameObject.SetActive(false);
-        if (sceneName != "")
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject temp in rootObjects)
         {
-            if (sceneName != "GameLayout")
+            if (temp.name == "ScoresPanel")
             {
-                master.transform.GetComponent<GameState>().gameChoice = "";
+                scoresPanel = temp;
+                break;
             }
-            SceneManager.LoadScene(sceneName);
         }
+        scoresPanel.SetActive(true);
     }
 }

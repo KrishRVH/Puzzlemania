@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class OptionsButton : MonoBehaviour
+public class ScoresOkayButton : MonoBehaviour
 {
-    private string sceneName = "GameLayout";
+    private string sceneName = "PuzzleChoice";
     private GameObject master;
     private Transform optionsPanel;
     private Button button;
