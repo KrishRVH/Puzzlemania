@@ -14,10 +14,20 @@ public class GameState : MonoBehaviour
     public AudioClip musicSudoku;
     public AudioClip musicWordle;
     private CrossFadeAudioSource fadeScript;
+    private float volume;
 
     void Start()
     {
         audioSource = transform.GetComponent<AudioSource>();
+        if (PlayerPrefs.GetInt("Audio", 1) == 0)
+        {
+            volume = 0f;
+            audioSource.volume = 0;
+        }
+        else
+        {
+            volume = 0.25f;
+        }
         audioSource.playOnAwake = true;
         audioSource.loop = true;
         fadeScript = transform.GetComponent<CrossFadeAudioSource>();
@@ -27,25 +37,41 @@ public class GameState : MonoBehaviour
 
     void Update()
     {
-        if ((gameChoice == "") && (audioSource.clip.name != "MainMenu"))
+        if (PlayerPrefs.GetInt("Audio", 1) == 0)
         {
-            fadeScript.Fade(musicMainMenu, 0.25f);
+            volume = 0f;
+            audioSource.volume = 0;
         }
-        else if ((gameChoice == "CrossSum") && (audioSource.clip.name != "CrossSum"))
+        else
         {
-            fadeScript.Fade(musicCrossSum, 0.25f);
+            volume = 0.25f;
         }
-        else if ((gameChoice == "Set") && (audioSource.clip.name != "Set"))
+        if (volume != 0f)
         {
-            fadeScript.Fade(musicSet, 0.25f);
+            if ((gameChoice == "") && (audioSource.clip.name != "MainMenu"))
+            {
+                fadeScript.Fade(musicMainMenu, volume);
+            }
+            else if ((gameChoice == "CrossSum") && (audioSource.clip.name != "CrossSum"))
+            {
+                fadeScript.Fade(musicCrossSum, volume);
+            }
+            else if ((gameChoice == "Set") && (audioSource.clip.name != "Set"))
+            {
+                fadeScript.Fade(musicSet, volume);
+            }
+            else if ((gameChoice == "Sudoku") && (audioSource.clip.name != "Sudoku"))
+            {
+                fadeScript.Fade(musicSudoku, volume);
+            }
+            else if ((gameChoice == "Wordle") && (audioSource.clip.name != "Wordle"))
+            {
+                fadeScript.Fade(musicWordle, volume);
+            }
         }
-        else if ((gameChoice == "Sudoku") && (audioSource.clip.name != "Sudoku"))
+        else
         {
-            fadeScript.Fade(musicSudoku, 0.25f);
-        }
-        else if ((gameChoice == "Wordle") && (audioSource.clip.name != "Wordle"))
-        {
-            fadeScript.Fade(musicWordle, 0.25f);
+            audioSource.Stop();
         }
     }
 }

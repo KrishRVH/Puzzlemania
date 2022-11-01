@@ -17,6 +17,7 @@ public class QuitButton : MonoBehaviour
 
     void QuitClick()
     {
+        PlayerPrefs.Save();
         Application.Quit();
     }
 }

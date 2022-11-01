@@ -16,9 +16,9 @@ public class RightPanel : MonoBehaviour
     {
         rightPanel = GetComponent<Transform>();
         CreatePauseButton(0f);
-        CreateHintButton(1f);
-        CreateHelpButton(2f);
-        CreateQuitButton(3f);
+        //CreateHintButton(1f);
+        CreateHelpButton(1f);
+        CreateQuitButton(2f);
     }
 
     void CreatePauseButton(float number)
