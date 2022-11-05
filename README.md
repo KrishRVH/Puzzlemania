@@ -111,7 +111,7 @@ This game accepts both mouse and keyboard input.
 
 ### Known Issues
 
-In the Set game, the Time Attack tracks 1 less set than you have found, we've yet to troubleshoot this.
+###### In the Set game, the Time Attack tracks 1 less set than you have found, we've yet to troubleshoot this.
 ---
 
 ## To Compile
