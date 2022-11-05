@@ -108,6 +108,10 @@ This game accepts both mouse and keyboard input.
 	c.	Dark Gray: The letter is Not in the word
 4.	Guess the word before running out of attempts to Win!
 
+
+### Known Issues
+
+In the Set game, the Time Attack tracks 1 less set than you have found, we've yet to troubleshoot this.
 ---
 
 ## To Compile
